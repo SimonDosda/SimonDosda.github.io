@@ -1,7 +1,9 @@
 ---
 layout: post
-title:  "Git Aliases for an Efficient Workflow"
+title:  Git Aliases for an Efficient Workflow
 date:   2021-04-13
+image:  2021-04-13-feature.png
+author: Simon Dosda
 categories: git tool
 ---
 
