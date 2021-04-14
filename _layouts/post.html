@@ -29,3 +29,14 @@ layout: default
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
+<div id="vcomment"></div>
+<script>
+  new Valine({
+    el: '#vcomment' ,
+    appId: 'R5F7Bc9KBJf9EFujb0CSMuBG-MdYXbMMI',
+    appKey: '0V7IE7M1vQyjBAYIlY9sahpS',
+    meta: ['nick'],
+    placeholder: 'Comment',
+    lang: 'en'
+  });
+</script>
