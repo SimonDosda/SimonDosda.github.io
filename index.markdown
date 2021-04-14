@@ -4,5 +4,3 @@
 
 layout: home
 ---
-
-This is my tech blog
