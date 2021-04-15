@@ -14,7 +14,7 @@ In the following sections, I go through the details of all my aliases, why and h
 
 ## Basic Shortcuts
 
-The first step of laziness. These aliases will just shorten the number of characters you type. The one I use the most is `co` for `checkout`. I have defined other ones but don't really use them ; I prefer their variants which I will present later. Meanwhile, here is a list of classic aliases that I configured.
+The first step of laziness. These aliases will just shorten the number of characters you type. The one I use the most is `co` for `checkout`. I have defined other ones but don't really use them; I prefer their variants which I will present later. Meanwhile, here is a list of classic aliases that I configured.
 
 ```bash
 co = checkout
@@ -35,7 +35,7 @@ These allow you to create a new branch by typing `git nb <branch-name>` (`git ch
 ## Enhanced Shortcuts
 
 I personally find some default behaviors of git quite annoying. 
-For instance, the fact that you need to set the name of the remote branch when you first push it, whereas I think I never came across the situation where I wanter this name to be different from the one of the local branch.
+For instance, the fact that you need to set the name of the remote branch when you first push it, whereas I think I never came across the situation where I want this name to be different from the one of the local branch.
 
 To solve this I use an alias, `git p`, that pushes the branch while setting the upstream branch with the same name.
 
@@ -53,7 +53,7 @@ c = !git add -A && git commit -m
 wip = !git add -A && git commit -m 'WIP'
 ```
 
-Finally, there is no quick way to get rid of everything we have done. However, sometimes we just play around a bit with no compelling results. To do so I have a `git drop` alias. There are several ways to do this, in my case I just stash my changes and drop them.
+Finally, there is no quick way to get rid of everything we have done. However, sometimes we just play around a bit with no compelling results. To do so I have a `git drop` alias. There are several ways to do this, in my case, I just stash my changes and drop them.
 
 ```bash
 drop = !git stash && git stash drop  # drop current changes
