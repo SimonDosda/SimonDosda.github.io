@@ -27,11 +27,13 @@ You have incredible scripting functionalities and an easy use of main developer 
 
 All of this is greatly due to the shell! While most of the humanity has totally forgotten about command line interfaces to the benefit of more accessible graphical user interfaces, the shell remains an incredible tool for developers seeking automation and efficiency.
 
-As one of our main tools, it would be too bad not to shape it to our needs. In this article I will present you my current setup, do not hesitate to share yours in the comment section.
+As one of our main tools, it would be too bad not to shape it to our needs. In this article I will present my current setup. I will be very intrested to know yours though, do not hesitate to share it in the comment section.
 
 ## Meet the Z shell
 
-While the default bash shell does a great job, there are several reasons to prefer its younger cousin, zsh. Among those, it comes with a better auto-completion feature, combined with a spelling correction and approximate completion when a command is entered.
+While the default bash shell does a great job, there are several reasons to prefer its younger cousin, zsh.
+
+Among those, it comes with a better auto-completion feature, combined with a spelling correction and approximate completion when a command is entered.
 
 ![zsh spelling correction](/assets/images/2021-04-20-autocomplete.png)
 _zsh spelling correction in action_
@@ -58,7 +60,7 @@ And... That's it!
 
 Now let's dive into the customization of our z shell.
 
-## Useful plugins
+## Some useful plugins
 
 [A lot of plugins](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins){:target="\_blank"} are already downloaded by Oh My Zsh, you just need to enable the one you want by adding them to the plugins list of your zshrc file.
 
