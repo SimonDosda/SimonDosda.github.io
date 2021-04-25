@@ -1,0 +1,30 @@
+.post + .post {
+  margin-top: 60px;
+}
+
+.post-link {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+
+  .post-head {
+    flex: 1;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.cover-image {
+  max-height: 150px;
+  object-fit: cover;
+}
+
+@media (min-width: 600px) {
+  .cover-image {
+    max-height: 100px;
+    max-width: 250px;
+    margin-right: 30px;
+  }
+}

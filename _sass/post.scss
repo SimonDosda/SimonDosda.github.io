@@ -1,5 +1,21 @@
 .cover-image {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+p {
+  img {
+    display: block;
+    margin: auto;
+  }
+  img + em {
+    display: block;
+    text-align: center;
+  }
+  cite {
+    color: #333;
+    display: block;
+    text-align: right;
+  }
 }
