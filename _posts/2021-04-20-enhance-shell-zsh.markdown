@@ -27,7 +27,7 @@ You have incredible scripting functionalities and an easy use of main developer 
 
 All of this is greatly due to the shell! While most of the humanity has totally forgotten about command line interfaces to the benefit of more accessible graphical user interfaces, the shell remains an incredible tool for developers seeking automation and efficiency.
 
-As one of our main tools, it would be too bad not to shape it to our needs. In this article I will present my current setup. I will be very intrested to know yours though, do not hesitate to share it in the comment section.
+As one of our main tools, it would be too bad not to shape it to our needs. In this article I will present my current setup. I am very interested to know yours though, do not hesitate to share it in the comment section.
 
 ## Meet the Z shell
 
@@ -99,7 +99,9 @@ ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[yellow]%}("
 ZSH_THEME_GIT_PROMPT_SUFFIX=")%{$reset_color%}"<
 ```
 
-Each value is framed with `%{$fg[<color>]%}<value>{$reset_color%}` to set the foreground color. I use `$(virtualenv_prompt_info)` to display my virtual environment (thanks to the virtualenv plugin presented above), `%n` to display the computer name and `%~` for the relative path. For the display of the git branch name, I use `$(git_prompt_info)` with a specific prefix and suffix that allows me to get rid of printing `git:` before the branch name.
+Each value is framed with `%{$fg[<color>]%}<value>{$reset_color%}` to set the foreground color. I use `$(virtualenv_prompt_info)` to display my virtual environment (thanks to the virtualenv plugin presented above), `%n` to display the computer name and `%~` for the relative path.
+
+For the display of the git branch name, I use `$(git_prompt_info)` with a specific prefix and suffix that allows me to get rid of displaying `git:` before the branch name.
 
 ## Conclusion
 
