@@ -8,6 +8,8 @@ categories: shell tool
 excerpt_separator: <!--more-->
 ---
 
+> Photo by [Levi Stute](https://unsplash.com/@levi_stute_cinematography).
+
 If you often need to use several terminals, you probably have already felt the need to be able to manage them more easily.
 
 I really believe that as one of our main tools, configuring the way we use the shell is of great benefit to developers.
@@ -131,6 +133,7 @@ Notice that I have also added the option `-c "#{pane_current_path}"`. This will 
 
 ### Adding switch panes shortcuts
 
+Photo by Jeremy Bishop on Unsplash
 For switching from one pane to another, using the prefix can be quite cumbersome. However, this is an action you want to seamlessly carry out.
 
 What you can do is add _direct_ shortcuts, by direct I mean that you won’t need to type the prefix before.
