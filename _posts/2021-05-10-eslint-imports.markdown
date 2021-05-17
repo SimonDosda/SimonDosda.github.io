@@ -86,15 +86,15 @@ To benefit from this feature you just need to add the [sort-import](https://esl
 
 ```json
 {
-	"rules": {
-		...
-		"sort-imports": [
-			"error",
-			{
-				"ignoreDeclarationSort": true
-			}
-		]
-  }
+  "rules": {
+    ...
+    "sort-imports": [
+      "error",
+      {
+        "ignoreDeclarationSort": true
+      }
+  ]
+}
 ```
 
 Unfortunately the `--fix` option will not automatically fix multiple lines errors. For this reason, I prefer to set `ignoreDeclarationSort` to `true`.
