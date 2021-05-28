@@ -1,15 +1,18 @@
 ---
 layout: post
 title: Handle Several PostgreSQL Versions With Docker
-date: 2021-05-17
+date: 2021-05-24
 cover_image: 2021-05-24-feature.jpg
 author: Simon Dosda
 categories: tooling database
+excerpt_separator: <!--more-->
 ---
 
 > Photo by [Baby Natur](https://unsplash.com/@babynatur).
 
 _[PostgreSQL](https://www.postgresql.org/)_ is a powerful, open-source object-relational database and is known as the world's most advanced open source database. It is often compared to _[MySQL](https://www.mysql.com/fr/)_, which on its side is known as the world's most popular open-source database.
+
+<!--more-->
 
 These two adjectives describe quite accurately the difference between the two solutions. While _PostgreSQL_ provides a feature-rich database that can handle complex queries and massive databases, _MySQL_ is much simpler and easy to use.
 
