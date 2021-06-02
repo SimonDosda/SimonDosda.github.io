@@ -67,7 +67,7 @@ _Example of a tmux display_
 Before being able to use _tmux_, you will need to install it, which should not be a headhache. On a Debian system it is done with the following command.
 
 ```bash
-sudo apt install _tmux_
+sudo apt install tmux
 ```
 
 Once _tmux_ is installed, you will be able to create a session.
@@ -98,7 +98,7 @@ For all the main commands, you can use a _tmux_ cheat-sheet like the one at [tmu
 
 _Tmux_ offers a lot of customization: you can change all the key bindings, tune its appearance, add scripts,...
 
-To do so, you just need to edit the configuration file at `~/tmux.config`.
+To do so, you just need to edit the configuration file at `~/.tmux.conf`.
 
 ### Changing the prefix
 
@@ -180,13 +180,15 @@ bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
 bind-key -T copy-mode-vi 'y' send-keys -X copy-selection-and-cancel
 ```
 
-Once in copy mode, I can navigate the history using vi controls, start a selection with the `v` key, copy it with `y` ,and then paste it in your terminal using `prefix + ]`.
+Once in copy mode, I can navigate the history using vi controls, start a selection with the `v` key, copy it with `y`, then paste it in your terminal using `prefix + ]`.
 
 Very useful!
 
+You can get the details of my `.tmux.conf` config file on my [github config files repository](https://github.com/SimonDosda/config-files).
+
 ## Launching a predefined session quickly with _tmuxp_
 
-Now that we have configured _tmux_ and are starting to be comfortable with all its commands, let me present you a tool that will dramatically reduce the time it takes you to setup your environment for a project.
+Now that we have configured _tmux_ and are starting to be comfortable with all its commands, let me present you a tool that will dramatically reduce the time it takes you setting up your environment for a project.
 
 This tool is a _tmux_ environment manager called _tmuxp_. Basically, it allows you to define your environments in files and then launch them for you, instead of creating custom new windows every time.
 
