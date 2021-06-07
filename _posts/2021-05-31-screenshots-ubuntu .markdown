@@ -15,7 +15,7 @@ For something I do several times a day, spending some time to find the best fitt
 
 ## _Flameshot_, to take customized screenshots
 
-First on the list is [\*Flameshot](https://flameshot.org/), which\* is a really powerful screenshot software, allowing you to easily take a capture of your screen but also to annotate it.
+First on the list is [Flameshot](https://flameshot.org/), which is a really powerful screenshot software, allowing you to easily take a capture of your screen but also to annotate it.
 
 Here is a quick demo where I use most of its features.
 
@@ -42,7 +42,7 @@ While 90% of my need are covered by _Flameshot_, there are times when I don't wa
 
 I find this particularly useful when I want to show a feature or a bug that occurs after an action like a click. For instance to show the features of _Flameshot_ as I did in the first part of this article!
 
-To do so my go-to guy is [_Peek_](https://github.com/phw/peek). Peek is a really simple tool that does one thing, recording animated GIFs of your screen, and does it well.
+To do so my go-to guy is [Peek](https://github.com/phw/peek). _Peek_ is a really simple tool that does one thing, recording animated GIFs of your screen, and does it well.
 
 Here is a _Peek_ recording another _Peek_ recording my screen, a _Peek-ception_! 😅
 
