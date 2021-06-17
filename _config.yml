@@ -30,6 +30,7 @@ github_username: simondosda
 rss: devlover
 
 show_excerpts: true
+permalink: /:collection/:year-:month-:day-:title:output_ext
 
 # Build settings
 theme: minima
