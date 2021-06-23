@@ -2,6 +2,7 @@
 layout: post
 title: Automatically Remove Unused Imports From Your JS Projects
 date: 2021-05-10
+last_modified_at: 2021-06-23
 cover_image: 2021-05-10-feature.jpg
 author: Simon Dosda
 categories: javascript tool

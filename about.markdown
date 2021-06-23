@@ -3,7 +3,7 @@ layout: page
 title: About
 permalink: /about/
 ---
-# Why, but Why this blog ?
+# Why, but Why this blog?
 
 Hi everybody, my name is Simon and I became a web developer quite recently, after working several years on engine development in the automotive industry.
 

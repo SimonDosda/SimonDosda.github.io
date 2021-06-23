@@ -2,6 +2,7 @@
 layout: post
 title: Who Owns The Web?
 date: 2021-05-17
+last_modified_at: 2021-06-23
 cover_image: 2021-05-17-feature.jpg
 author: Simon Dosda
 categories: culture web

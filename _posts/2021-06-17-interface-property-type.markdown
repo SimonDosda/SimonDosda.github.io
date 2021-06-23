@@ -2,6 +2,7 @@
 layout: post
 title: Getting The Type Of An Interface Property In Typescript
 date: 2021-06-17
+last_modified_at: 2021-06-23
 cover_image: 2021-06-17-feature.png
 author: Simon Dosda
 categories: typescript trick

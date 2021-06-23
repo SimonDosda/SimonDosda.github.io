@@ -2,6 +2,7 @@
 layout: post
 title: How To Take Static And Animated Screenshots On Ubuntu
 date: 2021-05-31
+last_modified_at: 2021-06-23
 cover_image: 2021-05-31-flameshot.gif
 author: Simon Dosda
 categories: tooling linux

@@ -2,6 +2,7 @@
 layout: post
 title: Git Aliases for an Efficient Workflow
 date: 2021-04-13
+last_modified_at: 2021-06-23
 cover_image: 2021-04-13-feature.png
 author: Simon Dosda
 categories: git tool

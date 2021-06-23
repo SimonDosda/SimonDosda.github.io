@@ -2,6 +2,7 @@
 layout: post
 title: Build A Portfolio With A Blog Using GitHub Pages
 date: 2021-06-22
+last_modified_at: 2021-06-23
 cover_image: 2021-06-24-feature.png
 author: Simon Dosda
 categories: ruby jekyll

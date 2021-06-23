@@ -6,6 +6,7 @@ cover_image: 2021-04-20-feature.jpg
 author: Simon Dosda
 categories: shell tool
 excerpt_separator: <!--more-->
+last_modified_at: 2021-06-23
 ---
 
 When I started my first work as a developer, the rules were clear:
