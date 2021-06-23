@@ -7,7 +7,7 @@ author: Simon Dosda
 categories: ruby jekyll
 ---
 
-This series of articles will show you how to easily and freely deploy a personal portfolio website with a blog.
+This series of articles will show you how to quickly and freely deploy a personal portfolio website with a blog.
 
 At the end of this tutorial, you will know how to build and host your own [Jekyll][1] blog on [GitHub Pages][2], how to create new pages or blog posts, and how to customize them.
 
@@ -15,6 +15,7 @@ We will also cover more advanced topics like adding a comment system directly in
 
 I divided the tutorial into several parts:
 
+- Introduction - you are here
 - [Setting Up]({% post_url 2021-06-22-blog-github-pages-2-setup %})
 - [Create Content]({% post_url 2021-06-23-blog-github-pages-3-content %})
 - [Customize Display]({% post_url 2021-06-24-blog-github-pages-4-custom %})

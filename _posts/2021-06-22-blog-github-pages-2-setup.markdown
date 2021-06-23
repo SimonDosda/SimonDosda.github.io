@@ -1,42 +1,56 @@
 ---
 layout: post
-title: Build A Portfolio With A Blog Using GitHub Pages
+title: Setup Your Free Portfolio With A Blog Using GitHub Pages
 date: 2021-06-22
 cover_image: 2021-06-22-feature.png
 author: Simon Dosda
 categories: ruby jekyll
 ---
-# 1 - Setting Up
 
-## Create Your GitHub Pages Repository
+This article is part of a series showing you how to quickly and freely build and host your own [Jekyll][1] blog on [GitHub Pages][2]. This series will also cover more advanced topics like adding a comment system directly in our code using [Staticman][3] and adding privacy-friendly but still free analytics using [Umami][4].
 
-To deploy your website using GitHub Pages, you need to create a new public repository using the following convention for the name: *<username>.github.io*.
+I divided the tutorial into several parts:
+
+- [Introduction]({% post_url 2021-06-21-blog-github-pages-1-foreword %})
+- Setting Up - you are here
+- [Create Content]({% post_url 2021-06-23-blog-github-pages-3-content %})
+- [Customize Display]({% post_url 2021-06-24-blog-github-pages-4-custom %})
+- [Comment System]({% post_url 2021-06-25-blog-github-pages-5-comment %})
+- [Analytics]({% post_url 2021-06-26-blog-github-pages-6-analytics %})
+
+Let's now see how we can set up and deploy our website.
+
+## Create your GitHub Pages repository
+
+To deploy your website using _GitHub Pages_, you need to create a new public repository using the following convention for the name: `<username>.github.io`.
 
 ![GitHub Pages Repository](/assets/images/2021-06-22-repo.png)
 
-Once you are done, the content of your repository will be deployed on *https://<username>.github.io*. You can try adding a *index.html* file with "Hello World" or anything you like in it to check everything works as expected.
+Once you have done this, the content of your repository will be deployed on `https://<username>.github.io`. You can try adding an `index.html` file at the root of your repository with "Hello World" or anything you fancy written in it to check everything works as expected.
 
-You can also deploy a website from any repository, which is very usefull to deploy documentation of your projects for instance. In this case the url will be *https://<username>.github.io/<repository-name>.*
+Note that you can deploy a website from any repository, but in this case, the associated URL will be `https://<username>.github.io/<repository-name>`. This feature is very convenient to deploy documentation of your projects, for instance.
 
-For this tutorial I will use a specific repository, called [gp-blog](https://github.com/SimonDosda/gp-blog) for Github Pages Blog, but you most probably want to deploy your blog/portfolio at the root folder.
+For this tutorial, I will use a specific repository called [gp-blog](https://github.com/SimonDosda/gp-blog) (for Github Pages Blog), which will therefore deploy at [https://simondosda.github.io/gp-blog])(https://simondosda.github.io/gp-blog), but you most probably want to deploy your portfolio at the root folder.
 
-## Create Our Jekyll Static Website
+Now that our git repository is ready, let's see how to set up _Jekyll_ in it.
 
-Jekyll is a Ruby Gem, so make sure you have all the prerequisites installed to be able to use it. You can find their list and the procedure to install them on your os at [https://jekyllrb.com/docs/installation/](https://jekyllrb.com/docs/installation/).
+## Create your Jekyll static website
 
-Once this is done, install *Jekyll* and *Bundler* gems.
+Jekyll is a Ruby Gem, so make sure you have all the prerequisites installed to use it. You can find their list and the procedure to install them on your os at [https://jekyllrb.com/docs/installation/](https://jekyllrb.com/docs/installation/).
+
+Once you have done this, install *Jekyll* and *Bundler* gems.
 
 ```bash
 gem install jekyll bundler 
 ```
 
-We can now initialize our jekyll project in the repository we just created with the following command.
+We can now initialize our _Jekyll_ project in the repository we just created with the following command.
 
 ```bash
 jekyll new .
 ```
 
-Once this is done, open the *Gemfile* file and follow the instruction to deploy on GitHub Pages, by commenting the `gem "jekyll"` line and uncommenting the `gem "github-pages"` one.
+Then, open the *Gemfile* file and follow the instruction to deploy on _GitHub Pages by commenting the `gem "jekyll"` line and uncommenting the `gem "github-pages"` one.
 
 ```bash
 # This will help ensure the proper Jekyll version is running.
@@ -53,51 +67,31 @@ You can then type the command  `bundle update` to install your dependencies and 
 
 Your new blog is now served on [localhost:4000](http://localhost:4000). As you can see, it needs some setup.
 
-## Edit The Global Configuration Of Our Blog
+## Edit the global configuration
 
-We can now start customizing our new blog. The first thing to do is to update the `_config.yml` file. There you can edit your blog title, its description, your email address and github username. 
+We can now start customizing our new blog. The first thing to do is to update the `_config.yml` file. There you can edit your blog title, its description, your email address, and _GitHub_ username. 
 
-You can also enter your twitter username or comment it if you don't have any.
+You can also enter your _Twitter_ username or comment the corresponding line if you don't have any.
 
-You can also add the property `show_excerpts: true` to display posts' excerpts on the home page, and change the permalink generation for pages with the `permalink` attribute. I like to use a less nested structure like the following.
+You can also add the property `show_excerpts: true` to display posts' excerpts on the home page.
+
+More anedoctical, you can change the permalink generation for pages with the `permalink` attribute. I like to use a less nested structure like the following.
 
 ```yaml
 permalink: /:collection/:year-:month-:day-:title:output_ext
 ```
 
-Even though we use the `--livereload` option, changes on the `_config.yml` file will not be taken into account. You need to kill your server and relaunch it, and you should see your changes appear in your browser.
+Even though we use the `--livereload` option, it will not consider changes done in the `_config.yml` file. You need to kill your server and relaunch it, and you should see your changes appear in your browser.
 
 If everything is ok, you can commit your changes and push them. 
 
-Note that you can edit the branch from which you website is deployed on your GitHub repository in *Settings → Pages →Source*.
+Note that you can edit the branch which deploys your website on your GitHub repository in *Settings → Pages → Source*.
 
-Here we are, we now have our basic blog up and running! 
+Here we are. We now have our blog backbone up and running! 
 
-## Add a Plugin to Open External Link on a New Tab
+You can find the code for this part [here](https://github.com/SimonDosda/gp-blog/tree/step-1-setup).
 
-one of the standard but annoying behavior of the blog we just created is that when you click on a link, it will go directly to it, losing your reader. The hack to avoid that in html is to set a `target=_blank` property to your anchor, which translate to something like this in markdown.
-
-```ruby
-[link](url){:target="_blank"}
-```
-
-In top of not being very elegant and easy to forget, this is very annoying because it won't work when you import your article in another source, for instance in *dev.to*.
-
-To avoid that we can install the plugin [Jekyll Target Blank]() which forces all external links to open in a new tab. It is also a good way to see how we can add plugins to our website.
-
-First you will need to add the gem to your `Gemfile` by adding the following line.
-
-```ruby
-group :jekyll_plugins do
-  ...
-  gem 'jekyll-target-blank' # Forces all external links to open in a new browser window
-end
-```
-
-Then add it to the list of plugins in your `_config.yml` file.
-
-```yaml
-plugins:
-  ...
-  - jekyll-target-blank
-```
+[1]: https://jekyllrb.com/
+[2]: https://pages.github.com/
+[3]: https://staticman.net/
+[4]: https://umami.is/
