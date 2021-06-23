@@ -8,7 +8,7 @@ author: Simon Dosda
 categories: ruby jekyll
 ---
 
-This article is part of a series showing you how to quickly and freely build and host your own [Jekyll][1] blog on [GitHub Pages][2]. This series will also cover more advanced topics like adding a comment system directly in our code using [Staticman][3] and adding privacy-friendly but still free analytics using [Umami][4].
+This article is part of a series showing you how to quickly and freely build and host your own [Jekyll](https://jekyllrb.com/) blog on [GitHub Pages](https://pages.github.com/). This series will also cover more advanced topics like adding a comment system directly in our code using [Staticman](https://staticman.net/) and adding privacy-friendly but still free analytics using [Umami](https://umami.is/).
 
 I divided the tutorial into several parts:
 
@@ -91,8 +91,3 @@ Note that you can edit the branch which deploys your website on your GitHub repo
 Here we are. We now have our blog backbone up and running! 
 
 You can find the code for this part [here](https://github.com/SimonDosda/gp-blog/tree/step-1-setup).
-
-[1]: https://jekyllrb.com/
-[2]: https://pages.github.com/
-[3]: https://staticman.net/
-[4]: https://umami.is/

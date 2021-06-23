@@ -10,9 +10,9 @@ categories: ruby jekyll
 
 This series of articles will show you how to quickly and freely deploy a personal portfolio website with a blog.
 
-At the end of this tutorial, you will know how to build and host your own [Jekyll][1] blog on [GitHub Pages][2], how to create new pages or blog posts, and how to customize them.
+At the end of this tutorial, you will know how to build and host your own [Jekyll](https://jekyllrb.com/) blog on [GitHub Pages][2], how to create new pages or blog posts, and how to customize them.
 
-We will also cover more advanced topics like adding a comment system directly in our code using [Staticman][3] and adding privacy-friendly but still free analytics using [Umami][4].
+We will also cover more advanced topics like adding a comment system directly in our code using [Staticman][3] and adding privacy-friendly but still free analytics using [Umami](https://umami.is/).
 
 I divided the tutorial into several parts:
 
@@ -50,7 +50,7 @@ And last but not least, deploying and hosting your website on _GitHub Pages_ is 
 
 ## How will it work?
 
-In this tutorial, we will use a static site generator named [Jekyll][1]. _Jekyll_ is the framework used by _GitHub_ to power _GitHub Pages_, which gives us the significant advantage of having _GitHub_ building our pages without needing to do anything.
+In this tutorial, we will use a static site generator named [Jekyll](https://jekyllrb.com/). _Jekyll_ is the framework used by _GitHub_ to power _GitHub Pages_, which gives us the significant advantage of having _GitHub_ building our pages without needing to do anything.
 
 _Jekyll_ builds HTML pages from markdown documents, which is great as this is the standard used by many blogging platforms and tools. Once you add an article in a markdown format, pushing it to your deployment branch will update your website.
 
@@ -62,11 +62,4 @@ As a static site generator, Jekyll will build all pages of our website at deploy
 
 But it also means that our pages will not be dynamic, with no interactivity with a database. Of course, you can still add some interactivity using javascript and AJAX calls to a service, but it means you will need a separated back-end for this.
 
-Hosting a _Jekyll_ website on _GitHub Pages_ is probably the easiest way, but it also comes with a significant drawback: the limited list of plugins that you can use. You can find the (small) list of available plugins [here][6].
-
-[1]: https://jekyllrb.com/
-[2]: https://pages.github.com/
-[3]: https://staticman.net/
-[4]: https://umami.is/
-[5]: https://dev.to/simondosda
-[6]: https://pages.github.com/versions/
+Hosting a _Jekyll_ website on _GitHub Pages_ is probably the easiest way, but it also comes with a significant drawback: the limited list of plugins that you can use. You can find the (small) list of available plugins [here](https://pages.github.com/versions/).
