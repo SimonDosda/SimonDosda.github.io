@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Build A Portfolio With A Blog Using GitHub Pages
-date: 2021-06-22
+date: 2021-06-26
 last_modified_at: 2021-06-23
 cover_image: 2021-06-26-feature.png
 author: Simon Dosda

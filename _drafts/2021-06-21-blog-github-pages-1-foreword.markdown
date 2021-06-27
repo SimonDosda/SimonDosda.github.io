@@ -16,12 +16,13 @@ We will also cover more advanced topics like adding a comment system directly in
 
 I divided the tutorial into several parts:
 
-- Introduction - you are here
+{% raw %}
 - [Setting Up]({% post_url 2021-06-22-blog-github-pages-2-setup %})
 - [Create Content]({% post_url 2021-06-23-blog-github-pages-3-content %})
 - [Customize Display]({% post_url 2021-06-24-blog-github-pages-4-custom %})
 - [Comment System]({% post_url 2021-06-25-blog-github-pages-5-comment %})
 - [Analytics]({% post_url 2021-06-26-blog-github-pages-6-analytics %})
+{% endraw %}
 
 ## Foreword
 

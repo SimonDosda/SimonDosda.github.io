@@ -11,14 +11,14 @@ categories: ruby jekyll
 This article is part of a series showing you how to quickly and freely build and host your own [Jekyll](https://jekyllrb.com/) blog on [GitHub Pages](https://pages.github.com/). This series will also cover more advanced topics like adding a comment system directly in our code using [Staticman](https://staticman.net/) and adding privacy-friendly but still free analytics using [Umami](https://umami.is/).
 
 I divided the tutorial into several parts:
-
+{% raw %}
 - [Introduction]({% post_url 2021-06-21-blog-github-pages-1-foreword %})
 - [Setting Up]({% post_url 2021-06-22-blog-github-pages-2-setup %})
 - Create Content - you are here
 - [Customize Display]({% post_url 2021-06-24-blog-github-pages-4-custom %})
 - [Comment System]({% post_url 2021-06-25-blog-github-pages-5-comment %})
 - [Analytics]({% post_url 2021-06-26-blog-github-pages-6-analytics %})
-
+{% endraw %}
 Now that we have initialized our project, let's see how to manage our content by: 
 - updating our home page to add some information before the list of blog posts
 - adding a static page showcasing our best GitHub projects
