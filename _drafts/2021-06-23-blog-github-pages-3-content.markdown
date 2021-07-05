@@ -7,7 +7,7 @@ cover_image: 2021-06-23-feature.png
 author: Simon Dosda
 categories: ruby jekyll
 ---
-{% raw %}
+
 This article is part of a series showing you how to quickly and freely build and host your own [Jekyll](https://jekyllrb.com/) blog on [GitHub Pages](https://pages.github.com/). This series will also cover more advanced topics like adding a comment system directly in our code using [Staticman](https://staticman.net/) and adding privacy-friendly but still free analytics using [Umami](https://umami.is/).
 
 I divided the tutorial into several parts:
@@ -47,7 +47,7 @@ Finally, I also added the property `title: ''` as a trick to avoid _Jekyll_ usin
 
 Here is the updated code of the file.
 
-
+{% raw %}
 ```markdown
 <!-- index.markdown -->
 ---

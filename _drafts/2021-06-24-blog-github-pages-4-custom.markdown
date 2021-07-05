@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Build A Portfolio With A Blog Using GitHub Pages
+title: Customize Your Jekyll Website
 date: 2021-06-24
 last_modified_at: 2021-06-23
 cover_image: 2021-06-24-feature.png
@@ -8,22 +8,36 @@ author: Simon Dosda
 categories: ruby jekyll
 ---
 
-# 3 - Customize Display
+This article is part of a series showing you how to quickly and freely build and host your own [Jekyll](https://jekyllrb.com/) blog on [GitHub Pages](https://pages.github.com/). This series will also cover more advanced topics like adding a comment system directly in our code using [Staticman](https://staticman.net/) and adding privacy-friendly but still free analytics using [Umami](https://umami.is/).
 
-The thing I like about *Jekyll* is that is provide you a very clean directory, most things are hidden to us and it just fells like magic. The drawback of this is that when you want to customize your theme, you need go to the theme repository to understand how to update it. 
+I divided the tutorial into several parts:
 
-## How the content is structured
+- [Introduction]({% post_url 2021-06-21-blog-github-pages-1-foreword %})
+- [Setting Up]({% post_url 2021-06-22-blog-github-pages-2-setup %})
+- [Create Content]({% post_url 2021-06-23-blog-github-pages-3-content %})
+- Customize Display - you are here
+- [Comment System]({% post_url 2021-06-25-blog-github-pages-5-comment %})
+- [Analytics]({% post_url 2021-06-26-blog-github-pages-6-analytics %})
 
-So before doing anything, we need to have a look at our [minima theme](https://github.com/jekyll/minima). Please make sure you look at the branch from you current version, in my case it is still the 2.5 that is installed (you can have this info in the `Gemfile` file), so I am looking at the [2.5-stable branch](https://github.com/jekyll/minima/tree/2.5-stable).
+Now that we have our website up and running, we will see together how we can customize our theme.
 
-Our blog structure mainly rely on 3 folders:
+## How Jekyll generates pages
 
-- `_layouts`: this is where the layout that we define in the Font Matter metadata of each markdown file.
-- `_includes`: snippets of html code that are used in layouts.
+One of the thing I like about *Jekyll* is that it provides you a very clean directory as it hides most of the magic behind the website creation. The drawback however is that when you want to customize your theme, it is easy to feel lost and not to know how to update it. 
 
-For instance if we look at the post layout code, we see the following (shortened).
+Indeed, layouts are defined by your theme and are not present in your local folder.
 
-```markdown
+So before doing anything, we need to have a look at our [minima theme repository](https://github.com/jekyll/minima). Please make sure you look at the branch of you current version, in my case it is the 2.5 one that is installed (you can have this info in the `Gemfile` file), so I am looking at the [2.5-stable branch](https://github.com/jekyll/minima/tree/2.5-stable).
+
+Our blog structure mainly relies on 3 folders:
+- `_layouts`: contains the layouts, which are used in the Front Matter metadata of each markdown file to define the page structure.
+- `_includes`: contains snippets of html code that can be used in layouts.
+
+For instance if we look at the `post` layout code, we see the following (shortened for comprehension).
+
+{% raw %}
+```html
+# _layouts/post.html
 ---
 layout: default
 ---
@@ -42,19 +56,27 @@ layout: default
 </article>
 ```
 
-The blog layout use the default layout, it means that its code will be injected in the `content` variable. When we use this layout for a blog post, its content is injected in the `content` variable of the blog layout. Moreover, we see that we use the  `page` variable to display the title, date, author and so on.
+
+There is a lot to comment here.
+
+The first thing we see is that the blog layout use the default layout. The way layout nesting works is that everything that you have below your Front Matter will be injected in the `{{ content }}` variable of its parent layout.
+
+For instance when you write a blog post using this layout, its content is injected in the `<div class="post-content e-content" itemprop="articleBody">{{ content }}</div>` block.
+
+Here we can also see the use of Front Matter metadata with the page title. Indeed, the `page` variable contains all the variables defined in the Front Matter of a template, that can be overrided by its children.
 
 Now if we look at the default layout, we see this.
 
-```ruby
+```html
+# _layouts/default.html
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 
-  {%- include head.html -%}
+  {% include head.html %}
 
   <body>
 
-    {%- include header.html -%}
+    {% include header.html %}
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
@@ -62,72 +84,72 @@ Now if we look at the default layout, we see this.
       </div>
     </main>
 
-    {%- include footer.html -%}
+    {% include footer.html %}
 
   </body>
 
 </html>
-
 ```
 
-The default layout represents the base structure of all our pages. Beside the `content` variable where the other layout are injected, it uses several `include` to inject html code. Let's dive into them and start customizing our blog by adding a favicon.
+The default layout represents the base structure of all our pages. Besides the `content` variable where the other layout are injected, it uses several `include` to inject HTML code. Let's dive into them and start customizing our blog by adding a favicon.
 
-## Add a favicon
+## Adding a favicon
 
 Let's start gently by adding a favicon to our website. If you are familiar with html, you know that the favicon is defined in the `head` tag, here defined in the `_includes/head.html` file.
 
 The way *Jekyll* works is that you can override any file by putting it in your own project. In this case we can create our own `_includes/head.html`, copy the code from github and modify it to add our favicon.
 
-For my favicon I went for [a lion](https://favicon.io/emoji-favicons/lion) for the sake of the exercise.
+For my favicon I generated one using [a lion emoji](https://favicon.io/emoji-favicons/lion) for the sake of the exercise.
 
-```ruby
+```html
 # _includes/head.html
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {%- seo -%}
-  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
-  {%- feed_meta -%}
-  {%- if jekyll.environment == 'production' and site.google_analytics -%}
-    {%- include google-analytics.html -%}
-  {%- endif -%}
-    
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ "/apple-touch-icon.png" | relative_url }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ "/favicon-32x32.png" | relative_url }}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ "/favicon-16x16.png" | relative_url }}">
+  {% seo %}
+  <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+  {% feed_meta %}
+  {% if jekyll.environment == 'production' and site.google_analytics %}
+    {% include google-analytics.html %}
+  {% endif %}
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.png' | relative_url }}">
 </head>
 ```
 
-## Modify the header
+## Modifying the header
 
-Now you can override any file to customize your website as you want.  
+The same way we overrided our `head.html` fille, we can override any file to customize your website as we want.  
 
 Let's add our new logo to the header for instance, by modifying `_includes/header.html`.
 
-```scss
+```html
+# _includes/header.html
 <header class="site-header" role="banner">
-    <div class="wrapper">
-      {%- assign default_paths = site.pages | map: "path" -%}
-      {%- assign page_paths = site.header_pages | default: default_paths -%}
-      <a class="site-title" rel="author" href="{{ "/" | relative_url }}">
-        <img src="{{ "favicon-32x32.png" | relative_url }}" />
-        {{ site.title | escape }}
-      </a>
-      ...
-    </div>
-  </header>
+  <div class="wrapper">
+    {% assign default_paths = site.pages | map: "path" %}
+    {% assign page_paths = site.header_pages | default: default_paths %}
+    <a class="site-title" rel="author" href="{{ '/' | relative_url }}">
+      <img src="{{ 'favicon-32x32.png' | relative_url }}" />
+      {{ site.title | escape }}
+    </a>
+    ...
+  </div>
+</header>
 ```
 
-## Customize your css
+## Customizing our CSS
 
-Their is several way to modify our css. As you can see in the `head.html` file, css is currently pulled from `assets/main.css`. In the development file it is actually a scss file, that import from the `_sass` directory.
+There are several ways to modify our CSS. As you can see in the `head.html` file, CSS is currently pulled from `assets/main.css`. In the development file it is actually a scss file, that is built from the `_sass` directory.
 
-The first way to customize your css is to copy/paste the `_sass` directory and edit its files as we did for the head file.
+The first option is to copy/paste the `_sass` directory and edit its files as we did for the head file.
 
-An other possibility is to generate use a new file that will be loaded at the end, so that rules we put here will take precedence over the default ones. This is the solution I will show you.
+An other possibility is to generate a new file that will be loaded at the end, so that the rules we put in it will override the default ones. This is the solution I will show you now.
 
-Let's first create the `assets/main.scss` file with the following code.
+First Let's create the `assets/main.scss` file with the following code.
 
 ```ruby
 # assets/main.scss
@@ -138,9 +160,10 @@ Let's first create the `assets/main.scss` file with the following code.
 @import "custom";
 ```
 
-I just added an import of the file `custom`. We can now create this file in the `_sass` folder and create add some css.
+Compared to the default file, I just added an import of the file `custom`. We can now create this file in the `_sass` folder and create add some css.
 
 ```scss
+// assets/main.scss
 .site-title {
     color: orangered;
     &:visited {
@@ -149,20 +172,22 @@ I just added an import of the file `custom`. We can now create this file in the 
 }
 ```
 
-Here I am just modifying the site title color to match our lion.
+Here I am just modifying the site title color to match our lion. My main point is to show you how you can do it, then it is up to you to decide how you want to style your website.
 
-## Add a feature image to our posts
+## Adding a feature image to our posts
 
-Something you will see in almost every blog is a feature image that is displayed in the blog list and at the top of an article. Unfortunately this is not taken into account be Jekyll now, so let's implement this feature ourselves.
+Something you will see in almost every blog is a feature image that is displayed in the blog list and at the top of an article. 
+
+Unfortunately this is not currently managed by Jekyll, so let's implement this feature ourselves.
 
 This time we want to modify the blog layout directly, we can create our own version in `_layouts/post.html`.
 
 What we are going to do is to check for a `feature_image` variable, and if it exists we will display it on top of our title by adding the following snippet.
 
-```scss
+```html
 {% if page.feature_image %}
   <div class="feature-image">
-    <img src="{{ "/assets/" | append: page.feature_image | relative_url }}" />
+    <img src="{{ '/assets/' | append: page.feature_image | relative_url }}" />
   </div>
 {% endif %}
 ```
@@ -197,62 +222,61 @@ You can then add some css to our `custom.scss` file to style it.
 
 Here is the result.
 
-![Post With Image](/assets/images/post.png)
+![Post With Image](/assets/images/2021-06-24-post.png)
 
-## Update the home
+## Updating the home to display the feature image
 
 Let's improve our home page.
 
 First copy the `home.html` in the `_layout` folder. Following the same principle than for the post layout, we can add our feature images.
 
-```ruby
+```html
 # _layout/home.html
 ---
 layout: default
 ---
 
 <div class="home">
-  {%- if page.title -%}
+  {% if page.title %}
     <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
+  {% endif %}
 
   {{ content }}
 
-  {%- if site.posts.size > 0 -%}
+  {% if site.posts.size > 0 %}
     <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
     <ul class="post-list">
-      {%- for post in site.posts -%}
+      {% for post in site.posts %}
       <li>
         <div>
-          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+          {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
           <span class="post-meta">{{ post.date | date: date_format }}</span>
           <h3>
             <a class="post-link" href="{{ post.url | relative_url }}">
               {{ post.title | escape }}
             </a>
           </h3>
-          {%- if site.show_excerpts -%}
+          {% if site.show_excerpts %}
             {{ post.excerpt }}
-          {%- endif -%}
+          {% endif %}
         </div>
         {% if post.feature_image %}
           <div class="feature-image">
-            <img src="{{ "/assets/" | append: post.feature_image | relative_url }}" />
+            <img src="{{ '/assets/' | append: post.feature_image | relative_url }}" />
           </div>
         {% endif %}
       </li>
-      {%- endfor -%}
+      {% endfor %}
     </ul>
 
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
-  {%- endif -%}
-
+    <p class="rss-subscribe">subscribe <a href="{{ '/feed.xml' | relative_url }}">via RSS</a></p>
+  {% endif %}
 </div>
 ```
 
 And update our `custom.scss` file.
 
-```css
+```scss
 // _sass/custom.scss
 ...
 
@@ -272,4 +296,6 @@ And update our `custom.scss` file.
 
 And here is the result.
 
-![Responsive Posts Image](/assets/images/home.gif)
+![Responsive Posts Image](/assets/images/2021-06-24-home.gif)
+
+{% endraw %}
