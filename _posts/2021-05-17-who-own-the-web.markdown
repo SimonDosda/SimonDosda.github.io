@@ -2,59 +2,61 @@
 layout: post
 title: Who Owns The Web?
 date: 2021-05-17
-last_modified_at: 2021-06-23
 cover_image: 2021-05-17-feature.jpg
 author: Simon Dosda
 categories: culture web
 excerpt_separator: <!--more-->
+last_modified_at: 2021-07-13
 ---
 
 > Photo by [Bill Oxford](https://unsplash.com/@bill_oxford).
 
-I know the question might sound a bit silly. Nobody owns the web, anyone connected to the network can be a host and deliver content, that's the beauty of internet!
+I know the question might sound a bit silly. Nobody owns the web; anyone connected to the network can be a host and deliver content; that's the beauty of the internet!
 
 But if you do so, you will indeed be able to access your server, but only by its IP address, something like _176.12.57.1_. Good luck with finding anyone to visit your page!
 
 <!--more-->
 
-The web wouldn't be the same without domain names associated with these IP addresses, but in the free world that is internet, who do they belong to? Who decides what domains are available and have the right to sell them?
+The web wouldn't be the same without domain names associated with these IP addresses, but in the free world that is internet, who own them? Who decides what domains are available and have the right to sell them?
 
 ## A bit of history
 
 Before answering these questions, we need to understand how the internet started.
 
-The internet is far from young, as a matter of fact it first started in 1969 under the name of ARPANET (Advanced Research Projects Agency Network). At its beginning, it was used to connect some of the major US universities and allow them to share files.
+The internet is far from young. It first started in 1969 under the name of ARPANET (Advanced Research Projects Agency Network). At its beginning, it was used to connect some of the major US universities and allow them to share files.
 
-But as you can guess, back then it was far from being what we call the internet today. Computers were linked by IP addresses and the network could only be used by experts as there was no way to swiftly navigate it.
+But as you can guess, back then, it was far from being what we call the internet today. Computers were linked by IP addresses, and the network could only be used by experts as there was no way to navigate it swiftly.
 
 ![arpanet](/assets/images/2021-05-17-arpanet.jpg)
 _ARPANET, the ancestor of internet_
 
-It was in 1989 that [Tim Berners-Lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee), a researcher at CERN, wrote the first proposal for the World Wide Web. The WWW, what we simply call the web now, was a proposal to merge different evolving technologies and standards in order to turn the internet into a powerful and easy-to-use global information system.
+In 1989, [Tim Berners-Lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee), a researcher at CERN, wrote the first proposal for the World Wide Web. The WWW, what we simply call the web now, was a proposal to merge different evolving technologies and standards in order to turn the internet into a powerful and easy-to-use global information system.
 
-This proposal was based on the use of the HyperText Transfer Protocol (HTTP) to navigate between web resources identified by Uniform Resource Locators (URLs) instead of IP addresses.
+This proposal was based on using the HyperText Transfer Protocol (HTTP) to navigate between web resources identified by Uniform Resource Locators (URLs) instead of IP addresses.
 
 ## How URLs work
 
-Let's see what composes a URL before going further, just to be sure we all use the same lingo. Let's decompose the URL of my blog (why not?) that is hosted on [github](https://simondosda.github.io).
+Let's see what composes a URL before going further to ensure we all use the same vocabulary. Let's decompose the URL of my blog (why not?) that is hosted on [GitHub](https://simondosda.github.io).
 
 ![url lingo](/assets/images/2021-05-17-lingo.png)
 
-It can be seen as a reverse hierarchy. To register your domain name, you first have to choose a domain extension, then check if the domain name you want is available for this extension. You can then use it as it is but also create as many subdomains you want for this domain.
+You can see it as a reverse hierarchy. To register your domain name, you first have to choose a domain extension, then check if the domain name you want is available for this extension. You can then use it as it is but also create as many subdomains as you want for this domain.
 
 The whole URL links to an IP address, in this case [185.199.108.153](http://185.199.108.153).
 
-### But how does your browser know, when you type an URL, and to which IP address it should go?
+### How does your browser know to which IP address it should go when you type an URL?
 
-This is done by the Domain Name System (DNS), which can be seen as a directory with all domains and their corresponding IP addresses. This information is stored on root servers that are located all over the world. These servers belong to different organizations; some of them belong to the Internet Corporation for Assigned Names and Numbers (ICANN), which is the non-profit organization responsible for managing domain name space, but others belong to universities, and internet companies like Verisign or even the US Army.
+The Domain Name System (DNS) takes care of linking URL to IP addresses. You can think of it as a directory with all domains and their corresponding IP addresses.
+
+This information is stored on root servers that are located all over the world. These servers belong to different organizations. Some belong to the Internet Corporation for Assigned Names and Numbers (ICANN), the non-profit organization responsible for managing domain namespace, but others belong to universities, internet companies like Verisign or even the US Army.
 
 ## Who owns top-level domains?
 
 We can now go back to our main question.
 
-If you have created a website already, you know that in order to have a domain name you need to buy one from a registrar, a company that manages the reservation of Internet domain names.
+If you have created a website already, you know that in order to have a domain name, you need to buy one from a registrar, a company that manages the reservation of Internet domain names.
 
-### But who do they purchase these domains from and who decides what the available top-level names are?
+### Who do registrars purchase domains from, and who decides what the available top-level names are?
 
 Until the end of the nineties, the function of administering top-level domains and IP addresses was performed by a single man, [Jon Postel](https://en.wikipedia.org/wiki/Jon_Postel), a Computer Science researcher who had been involved in the creation of ARPANET. Yes, it was a different time!
 
@@ -70,11 +72,11 @@ Registrars then deal with these organizations to register domain names. For exam
 
 In the end, it is your internet provider that is in charge of directing you to the required IP address when you enter an URL. To access the registry of domain names, they rely on root servers, which are under the responsibility of the ICANN.
 
-They could rely on something else, but this is the consensus that was made historically and will probably never change. It is interesting to see how this system, which holds huge responsibilities, was put into place so easily and with so little criticism.
+They could rely on something else, but this is the consensus made historically and will probably never change. It is interesting to see how this system, which holds tremendous responsibilities, was put into place so smoothly and with so little criticism.
 
-Much of the ICANN's criticisms comes from the acceptance or rejection of new top-level names.
+Much of the ICANN's criticisms come from the acceptance or rejection of new top-level names.
 
-For instance, it refused the purchase of _.islam_ and _.halal_ top-level domain names by a Turkish company after the Organisation of Islamic Cooperation objected that they should be administered by an organization that represents all Muslims.
+For instance, it refused the purchase of _.islam_ and _.halal_ top-level domain names by a Turkish company after the Organisation of Islamic Cooperation objected that they should be administered by an organization representing all Muslims.
 
 On the other hand, it allowed the purchase of the _.sucks_ domain name by the Vox Populi Registry, which uses this domain to charge exorbitant amounts of money to companies so that they can protect their names.
 
