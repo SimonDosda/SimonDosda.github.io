@@ -44,9 +44,9 @@ In the `Deployment method` of the `Deploy` tab, click on `GitHub`. Once connecte
 Once this is done, you can go to the `Manual deploy` section and click on `Deploy Branch`.
 
 This will deploy an application to [`https://<app-name>.herokuapp.com/`](https://sdosda-gp-blog.herokuapp.com/).
-There should be an error diplayed. It is normal, we havent configure it yet. We will take care of it now.
+There should be an error diplayed. It is expected as we haven't configured it yet. We will take care of it now.
 
-The app will need to be able to access your github repository. To do so, create a new application in GitHub _Settings → Developer settings →GitHub Apps_.
+The app will need to be able to access your GitHub repository. To do so, create a new application in GitHub _Settings → Developer settings →GitHub Apps_.
 
 Create an app with the following inputs:
 
@@ -57,6 +57,8 @@ Create an app with the following inputs:
 - Subscribe to events: `Pull request`
 
 Once your app is created, go to `General → Private keys` and hit `Generate a private key`.
+
+Finaly, go to `Install App` and hit `Install`.
 
 Go back to Heroku. Now it is time to configure our app.
 
@@ -128,26 +130,27 @@ comments:
   requiredFields: ["name", "message"]
 ```
 
-You might have to change the name of the `branch` from which you are deploying, and definitely have to update the `allowedOrigins` value with your own domain, or remove it if you don't fell like you need this security.
+You might have to change the name of the `branch` from which you are deploying and will have to update the `allowedOrigins` value with your domain name, or remove it if you don't feel like you need this security.
 
-In this post we will focus on building a simple comment system where any user can enter a `name` and a `message` in markdown. We will allow them to respond to other messages as well.
+This post will focus on building a simple comment system where any user can enter a `name` and a `message` in markdown. We will allow them to respond to other messages as well.
 
-_Staticman_ allows you to check for spam automatically, to send email notification and to implement recapchta, but we wont cover this here.
+_Staticman_ allows you to check for spam automatically, send email notifications, and implement Recaptcha, but we won't cover this here.
 
 In the `_config` file, add the following entry, with your own `app name`, github `username`, `repo` and `branch`.
 
 ```yaml
+# _config.yml
 staticman_url: https://<app-name>/v3/entry/github/<username>/<repo>/<branch>/comments
 ```
 
 ## Creating the input form
 
-In the `_includes` folder, add a new `comment_form.html` file.
+In the `_includes` folder, add a new `comment-form.html` file.
 
 {% raw %}
 
 ```html
-<!-- _includes/comment_form.html -->
+<!-- _includes/comment-form.html -->
 <form method="POST" action="{{ site.staticman_url }}" class="comment-form">
   <input
     name="options[redirect]"
@@ -177,28 +180,29 @@ In the `_includes` folder, add a new `comment_form.html` file.
 
 {% endraw %}
 
-The way staticman works it that we will send data from a form to our `staticman_url` we just defined.
+What we just did is that we set up a form that will send data to the `staticman_url`.
 
 As we defined in our `staticman.yml` config file, our comments are based on 2 fields:
 
 - `name`: the name of the sender, defined by `<input name="fields[name]" required>`
 - `message`: the content of the comment, define by `<textarea name="fields[message]" required></textarea>`
 
-We also provide 2 options when we validate the form, defined by hidden inputs:
+We also provide two options when we validate the form, defined by hidden inputs:
 
-- `redirect`: the url to be redirect once the submit call will complete. Here we come back to our page
+- `redirect`: the URL to be redirected to once the submit call will complete. Here we come back to our page
 - `slug`: the slug of the page that will be used to create the comment folder, as we defined our `path` as `"_data/comments/{options.slug}"` in the `staticman.yml` configuration file
 
 ## Displaying the list of comments
 
-Comments that will be sent to our repository will be stored in the `_data/comments/<slug>` directory. The way to access them in _Jekyll_ is with the variable `site.data.comments[page.slug]`.
+Comments sent to our repository will be stored in the `_data/comments/<slug>` directory.
+The way to access them in _Jekyll_ is with the variable `site.data.comments[page.slug]`.
 
-Let's create a `comment_list.html` file in our `_includes` folder to display them.
+Let's create a `comment-list.html` file in our `_includes` folder to display them.
 
 {% raw %}
 
 ```html
-<!-- _includes/comment_list.html -->
+<!-- _includes/comment-list.html -->
 {% assign comments = site.data.comments[page.slug] | where_exp: "item", "true"
 %} {% assign sorted_comments = comments | sort: 'date' %} {% for comment in
 sorted_comments %}
@@ -221,11 +225,11 @@ sorted_comments %}
 
 What we do here is looping over the page comments sorted by date. The first line with the `where_expression` filter is required to get the comment values.
 
-For each comment we display the `name`, `date` and `message` with the `strip_html` filter to secure the message and`markdownify` filter to render markdown.
+For each comment, we display the `name`, `date` and `message` with the `strip_html` filter to secure the message and `markdownify` filter to render markdown.
 
 ## Adding the comments block
 
-We now have everything we need for our basic comments feature.
+We now have everything we need for our simple comments feature.
 
 Let's add another file in our `_include` folder named `comments.html` that will wrap together our two comments snippets: posting a new comment and displaying receipt comments.
 
@@ -256,11 +260,13 @@ Now we can update our `_layout/post.html` file to display these comments instead
 
 ```html
 <!-- _layout/post.html -->
+...
 <div class="post-content e-content" itemprop="articleBody">{{ content }}</div>
 
 {% include comments.html %}
 
 <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+...
 ```
 
 {% endraw %}
@@ -269,7 +275,7 @@ Now we can update our `_layout/post.html` file to display these comments instead
 
 Before pushing our brand new feature, let's add some style to our comments.
 
-As it is a separate feature the best option is probably to create it's own css file. Let's create a new `comments.scss` in the sass file and add the import line `@import "comments";` in `assets/main.scss`.
+As it is a separate feature, the best option is probably to create its own CSS file. Let's create a new `comments.scss` in the sass file and add the import line `@import "comments";` in `assets/main.scss`.
 
 ```scss
 // _sass/comments.scss
@@ -327,13 +333,15 @@ As it is a separate feature the best option is probably to create it's own css f
 }
 ```
 
-You can now go ahead and deploy our comment system. When you send a comment, it should open a merge request, that will be automatically validated it you set `moderation: false` in the staticman configuration file.
+You can now go ahead and deploy our comment system.
+
+When you send a comment, it should open a merge request that will be automatically validated if you set `moderation: false` in the staticman configuration file.
 
 ![List of comments](/assets/images/2021-06-25-comment-list.png)
 
 Our system comment is now functional!
 
-But there is still some improvements that can be added, starting by allowing to respond to a comment.
+But there are still some improvements that can be added, starting by allowing to respond to a comment.
 
 ## Add reply feature
 
