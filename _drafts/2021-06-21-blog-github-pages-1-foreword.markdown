@@ -17,12 +17,13 @@ We will also cover more advanced topics like adding a comment system directly in
 I divided the tutorial into several parts:
 
 {% raw %}
+
 - [Setting Up]({% post_url 2021-06-22-blog-github-pages-2-setup %})
 - [Create Content]({% post_url 2021-06-23-blog-github-pages-3-content %})
 - [Customize Display]({% post_url 2021-06-24-blog-github-pages-4-custom %})
-- [Comment System]({% post_url 2021-06-25-blog-github-pages-5-comment %})
+- [Commenting System]({% post_url 2021-06-25-blog-github-pages-5-comment %})
 - [Analytics]({% post_url 2021-06-26-blog-github-pages-6-analytics %})
-{% endraw %}
+  {% endraw %}
 
 ## Foreword
 
@@ -59,7 +60,7 @@ _Jekyll_ builds HTML pages from markdown documents, which is great as this is th
 
 There is no perfect solution to build a website, and it is essential to know the limitation of your stack when choosing it.
 
-As a static site generator, Jekyll will build all pages of our website at deployment. This is nice as it provides a fast navigation experience, compare to a website using a back-end for which pages would be build when the user navigates the website. 
+As a static site generator, Jekyll will build all pages of our website at deployment. This is nice as it provides a fast navigation experience, compare to a website using a back-end for which pages would be build when the user navigates the website.
 
 But it also means that our pages will not be dynamic, with no interactivity with a database. Of course, you can still add some interactivity using javascript and AJAX calls to a service, but it means you will need a separated back-end for this.
 

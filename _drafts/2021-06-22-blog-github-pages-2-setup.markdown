@@ -12,14 +12,15 @@ This article is part of a series showing you how to quickly and freely build and
 
 I divided the tutorial into several parts:
 {% raw %}
+
 - [Introduction]({% post_url 2021-06-21-blog-github-pages-1-foreword %})
 - Setting Up - you are here
 - [Create Content]({% post_url 2021-06-23-blog-github-pages-3-content %})
 - [Customize Display]({% post_url 2021-06-24-blog-github-pages-4-custom %})
-- [Comment System]({% post_url 2021-06-25-blog-github-pages-5-comment %})
+- [Commenting System]({% post_url 2021-06-25-blog-github-pages-5-comment %})
 - [Analytics]({% post_url 2021-06-26-blog-github-pages-6-analytics %})
-{% endraw %}
-Let's now see how we can set up and deploy our website.
+  {% endraw %}
+  Let's now see how we can set up and deploy our website.
 
 ## Create your GitHub Pages repository
 
@@ -39,10 +40,10 @@ Now that our git repository is ready, let's see how to set up _Jekyll_ in it.
 
 Jekyll is a Ruby Gem, so make sure you have all the prerequisites installed to use it. You can find their list and the procedure to install them on your os at [https://jekyllrb.com/docs/installation/](https://jekyllrb.com/docs/installation/).
 
-Once you have done this, install *Jekyll* and *Bundler* gems.
+Once you have done this, install _Jekyll_ and _Bundler_ gems.
 
 ```bash
-gem install jekyll bundler 
+gem install jekyll bundler
 ```
 
 We can now initialize our _Jekyll_ project in the repository we just created with the following command.
@@ -51,7 +52,7 @@ We can now initialize our _Jekyll_ project in the repository we just created wit
 jekyll new .
 ```
 
-Then, open the *Gemfile* file and follow the instruction to deploy on _GitHub Pages by commenting the `gem "jekyll"` line and uncommenting the `gem "github-pages"` one.
+Then, open the _Gemfile_ file and follow the instruction to deploy on \_GitHub Pages by commenting the `gem "jekyll"` line and uncommenting the `gem "github-pages"` one.
 
 ```bash
 # This will help ensure the proper Jekyll version is running.
@@ -64,13 +65,13 @@ gem "github-pages", "~> 214", group: :jekyll_plugins
 
 For the version (here 214), you can find the latest version [here](https://pages.github.com/versions/).
 
-You can then type the command  `bundle update` to install your dependencies and serve your website locally with the command `bundle exec jekyll serve --livereload`. 
+You can then type the command `bundle update` to install your dependencies and serve your website locally with the command `bundle exec jekyll serve --livereload`.
 
 Your new blog is now served on [localhost:4000](http://localhost:4000). As you can see, it needs some setup.
 
 ## Edit the global configuration
 
-We can now start customizing our new blog. The first thing to do is to update the `_config.yml` file. There you can edit your blog title, its description, your email address, and _GitHub_ username. 
+We can now start customizing our new blog. The first thing to do is to update the `_config.yml` file. There you can edit your blog title, its description, your email address, and _GitHub_ username.
 
 You can also enter your _Twitter_ username or comment the corresponding line if you don't have any.
 
@@ -84,10 +85,10 @@ permalink: /:collection/:year-:month-:day-:title:output_ext
 
 Even though we use the `--livereload` option, it will not consider changes done in the `_config.yml` file. You need to kill your server and relaunch it, and you should see your changes appear in your browser.
 
-If everything is ok, you can commit your changes and push them. 
+If everything is ok, you can commit your changes and push them.
 
-Note that you can edit the branch which deploys your website on your GitHub repository in *Settings → Pages → Source*.
+Note that you can edit the branch which deploys your website on your GitHub repository in _Settings → Pages → Source_.
 
-Here we are. We now have our blog backbone up and running! 
+Here we are. We now have our blog backbone up and running!
 
 You can find the code for this part [here](https://github.com/SimonDosda/gp-blog/tree/step-1-setup).

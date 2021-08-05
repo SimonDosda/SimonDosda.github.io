@@ -1,33 +1,52 @@
 ---
 layout: post
-title: Build A Portfolio With A Blog Using GitHub Pages
+title: Add A Comment System To A Jekyll Blog Hosted On GitHub Pages Using Staticman
 date: 2021-06-25
 last_modified_at: 2021-06-23
 cover_image: 2021-06-25-feature.png
 author: Simon Dosda
 categories: ruby jekyll
 ---
-# 4 - Add a Comment System
 
-There is several solution to add a comment system to our blog. 
+This article is part of a series showing you how to quickly and freely build and host your own [Jekyll](https://jekyllrb.com/) blog on [GitHub Pages](https://pages.github.com/). This series will also cover more advanced topics like adding a comment system directly in our code using [Staticman](https://staticman.net/) and adding privacy-friendly but still free analytics using [Umami](https://umami.is/).
 
-Among the popular ones there is [disqus](https://disqus.com/), that as the advantage to be easy to implement, as it is a script loaded in your page, but which has privacy issues and display adds in its free version.
+I divided the tutorial into several parts:
 
-Another solution is to use [staticman](https://staticman.net/), which will create files in your repository for you, so that your website will be updated statically. It is free and open-source, not as straightforward as disqus to implement as you need to deploy an api for it. The nice thing is that all your comments will be stored in your git repository, so there is no risk of loosing them.
+- [Introduction]({% post_url 2021-06-21-blog-github-pages-1-foreword %})
+- [Setting Up]({% post_url 2021-06-22-blog-github-pages-2-setup %})
+- [Create Content]({% post_url 2021-06-23-blog-github-pages-3-content %})
+- [Customize Display]({% post_url 2021-06-24-blog-github-pages-4-custom %})
+- [Commenting System] - you are here
+- [Analytics]({% post_url 2021-06-26-blog-github-pages-6-analytics %})
 
-But we are courageous and will implement it for our website.  
+Now that we have our custom website with its blog, let's see how to add some interactivity with a commenting system.
 
-## Deploy the app on Heroku
+Adding a commenting system to a Jekyll website is tricky as it is a static site generator, with no backend allowing us to store comments in a database and serve them.
 
-Follow [this link](https://heroku.com/deploy?template=https://github.com/eduardoboucas/staticman/tree/master) to deploy the latest version of Staticman on Heroku. You might need to create an account first if you don't have one.
+The immediate solution to solve this issue is to use an external service with its own database. Among the popular ones, [disqus](https://disqus.com/) is often used with Jekyll. It has the advantage of being easy to implement, as it is a script loaded on your page, but it also presents privacy issues and displays ads in its free version.
 
-You should then be redirect to the deployment page of staticman, enter your app name and hit *Deploy app*.
+Another possible solution to add dynamic content to a GitHub website is to use [staticman](https://staticman.net/). On the opposite of the previous solutions using external databases, _staticman_ creates files in your repository, updating your website statically. It is free and open-source but not as straightforward as _disqus_ to implement as you need to deploy an API for it. The nice thing is that it will store all your comments in your git repository, so there is no risk of losing them.
 
-![Staticman Screen](/assets/images/2021-06-25-staticman.png)
+As we are courageous, this is the solution we will implement for our website.
+
+## Deploying the app on Heroku
+
+We will deploy a staticman instance on [Heroku](https://www.heroku.com). You might need to create an account first if you don't have one.
+
+Hence this is done, go the the [staticman GitHub repository](https://github.com/eduardoboucas/staticman) and fork it.
+
+On your Heroku dashboard, go to `New -> Create new app`, Type the name that you want for your app and hit `Create app`.
+
+In the `Deployment method` of the `Deploy` tab, click on `GitHub`. Once connected, choose the `staticman` repository and hit `Connect`.
+
+![Staticman Screen](/assets/images/2021-06-25-deploy-github.png)
+
+Once this is done, you can go to the `Manual deploy` section and click on `Deploy Branch`.
 
 This will deploy an application to [`https://<app-name>.herokuapp.com/`](https://sdosda-gp-blog.herokuapp.com/).
+There should be an error diplayed. It is normal, we havent configure it yet. We will take care of it now.
 
-This app will need to be able to access your github repository. To do so, create a new application in GitHub *Settings → Developer settings →GitHub Apps*.
+The app will need to be able to access your github repository. To do so, create a new application in GitHub _Settings → Developer settings →GitHub Apps_.
 
 Create an app with the following inputs:
 
@@ -37,17 +56,21 @@ Create an app with the following inputs:
 - Repository permissions / Pull Requests: `Access: read and write`
 - Subscribe to events: `Pull request`
 
-Once your app is create, got to *General → Private keys* and hit *Generate a private key*.
+Once your app is created, go to `General → Private keys` and hit `Generate a private key`.
 
-You can then install it.
+Go back to Heroku. Now it is time to configure our app.
 
-Go back to Heroku, now it is time to configure our app.
+In _Settings -> Config Vars_, create the following variables:
 
-In *Settings →Config Vars*, create the following variables:
-
-- GITHUB_APP_ID: the GitHub app id displayed at the beginning of the *General* section
+- GITHUB_APP_ID: the GitHub app id displayed at the beginning of the \_General\* section
 - GITHUB_PRIVATE_KEY: the private key we just generated
 - RSA_PRIVATE_KEY: a private key that will be used to encrypt content, you can use the same as GITHUB_PRIVATE_KEY
+
+Go back to the deploy tab and run a manual deployment again.
+
+Once the deployment is over, you should now see a welcome message when you visit your app.
+
+## Adding Staticman to our project
 
 Then create a `staticman.yml` file as follow.
 
@@ -105,11 +128,11 @@ comments:
   requiredFields: ["name", "message"]
 ```
 
-You might have to change the name of the `branch` from which you are deploying, and definitely have to update the `allowedOrigins` value with your own domain, or remove it if you don't fell like you need this security. 
+You might have to change the name of the `branch` from which you are deploying, and definitely have to update the `allowedOrigins` value with your own domain, or remove it if you don't fell like you need this security.
 
-In this post we will focus on building a simple comment system where any user can enter a `name` and a `message` in markdown. We will allow them to respond to other messages as well. 
+In this post we will focus on building a simple comment system where any user can enter a `name` and a `message` in markdown. We will allow them to respond to other messages as well.
 
-*Staticman* allows you to check for spam automatically, to send email notification and to implement recapchta, but we wont cover this here.
+_Staticman_ allows you to check for spam automatically, to send email notification and to implement recapchta, but we wont cover this here.
 
 In the `_config` file, add the following entry, with your own `app name`, github `username`, `repo` and `branch`.
 
@@ -119,22 +142,39 @@ staticman_url: https://<app-name>/v3/entry/github/<username>/<repo>/<branch>/com
 
 ## Creating the input form
 
-In the `_includes` folder, add a new `comment_form.html` file. 
+In the `_includes` folder, add a new `comment_form.html` file.
 
 {% raw %}
+
 ```html
 <!-- _includes/comment_form.html -->
 <form method="POST" action="{{ site.staticman_url }}" class="comment-form">
-  <input name="options[redirect]" type="hidden" value="{{ page.url | absolute_url }}">
-  <input name="options[slug]" type="hidden" value="{{ page.slug }}">
-  
-  <textarea class="comment-message" name="fields[message]" placeholder="Comment (markdown accepted)" required></textarea>
+  <input
+    name="options[redirect]"
+    type="hidden"
+    value="{{ page.url | absolute_url }}"
+  />
+  <input name="options[slug]" type="hidden" value="{{ page.slug }}" />
+
+  <textarea
+    class="comment-message"
+    name="fields[message]"
+    placeholder="Comment (markdown accepted)"
+    required
+  ></textarea>
   <div class="comment-bottom">
-    <input class="comment-name" name="fields[name]" type="text" placeholder="Name" required>
+    <input
+      class="comment-name"
+      name="fields[name]"
+      type="text"
+      placeholder="Name"
+      required
+    />
     <button class="comment-submit" type="submit">SEND</button>
-  </div>  
+  </div>
 </form>
 ```
+
 {% endraw %}
 
 The way staticman works it that we will send data from a form to our `staticman_url` we just defined.
@@ -151,26 +191,32 @@ We also provide 2 options when we validate the form, defined by hidden inputs:
 
 ## Displaying the list of comments
 
-Comments that will be sent to our repository will be stored in the `_data/comments/<slug>` directory. The way to access them in *Jekyll* is with the variable `site.data.comments[page.slug]`.
+Comments that will be sent to our repository will be stored in the `_data/comments/<slug>` directory. The way to access them in _Jekyll_ is with the variable `site.data.comments[page.slug]`.
 
 Let's create a `comment_list.html` file in our `_includes` folder to display them.
 
 {% raw %}
+
 ```html
 <!-- _includes/comment_list.html -->
-{% assign comments = site.data.comments[page.slug] | where_exp: "item", "true" %}
-{% assign sorted_comments = comments | sort: 'date' %}
-{% for comment in sorted_comments %}
+{% assign comments = site.data.comments[page.slug] | where_exp: "item", "true"
+%} {% assign sorted_comments = comments | sort: 'date' %} {% for comment in
+sorted_comments %}
 <div class="comment">
-    <h3>{{comment.name}}</h3>
-    <time class="post-meta dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {{ comment.date | date:"%H:%M - %b %-d, %Y, %Y" }}
-    </time>
-    <p>{{comment.message | strip_html | markdownify }}</p>
+  <h3>{{comment.name}}</h3>
+  <time
+    class="post-meta dt-published"
+    datetime="{{ page.date | date_to_xmlschema }}"
+    itemprop="datePublished"
+  >
+    {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+    {{ comment.date | date:"%H:%M - %b %-d, %Y, %Y" }}
+  </time>
+  <p>{{comment.message | strip_html | markdownify }}</p>
 </div>
 {% endfor %}
 ```
+
 {% endraw %}
 
 What we do here is looping over the page comments sorted by date. The first line with the `where_expression` filter is required to get the comment values.
@@ -184,14 +230,15 @@ We now have everything we need for our basic comments feature.
 Let's add another file in our `_include` folder named `comments.html` that will wrap together our two comments snippets: posting a new comment and displaying receipt comments.
 
 {% raw %}
+
 ```html
 <!-- _includes/comments.html -->
-<section class="comments">    
+<section class="comments">
   {% if site.data.comments[page.slug] %}
-    <div>
-      <h2>Comments</h2>
-      {% include comment_list.html %}
-    </div>
+  <div>
+    <h2>Comments</h2>
+    {% include comment_list.html %}
+  </div>
   {% endif %}
 
   <div>
@@ -200,21 +247,22 @@ Let's add another file in our `_include` folder named `comments.html` that will 
   </div>
 </section>
 ```
+
 {% endraw %}
 
 Now we can update our `_layout/post.html` file to display these comments instead of the `disqus` comments.
 
 {% raw %}
+
 ```html
 <!-- _layout/post.html -->
-<div class="post-content e-content" itemprop="articleBody">
-    {{ content }}
-  </div>
+<div class="post-content e-content" itemprop="articleBody">{{ content }}</div>
 
-{% include comments.html %} 
+{% include comments.html %}
 
 <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 ```
+
 {% endraw %}
 
 ## Style our comments
@@ -226,55 +274,56 @@ As it is a separate feature the best option is probably to create it's own css f
 ```scss
 // _sass/comments.scss
 .comment {
-    padding-top: 10px;
-    h3 {
-        display: inline;
-        color: royalblue;
-    }
-    p {
-        margin: 0;
-    }
+  padding-top: 10px;
+  h3 {
+    display: inline;
+    color: royalblue;
+  }
+  p {
+    margin: 0;
+  }
 }
 
 .comment-new {
-    margin-top: 25px;
+  margin-top: 25px;
 }
 
 .comment-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+
+  .comment-message,
+  .comment-name {
+    font-size: 16px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin: 0;
+  }
+
+  .comment-message {
+    min-height: 150px;
+    resize: none;
+  }
+
+  .comment-bottom {
     display: flex;
-    flex-direction: column;
-    margin-top: 25px;
+  }
 
-    .comment-message, .comment-name {
-        font-size: 16px;
-        padding: 15px;
-        border: 1px solid #ddd;
-        margin: 0;
-    }
+  .comment-name {
+    flex: 1;
+  }
 
-    .comment-message {
-        min-height: 150px;
-        resize: none;
-    }
-    
-    .comment-bottom {
-        display: flex;
-    }
+  .comment-submit {
+    width: 200px;
+    border: 1px solid #ddd;
+    color: royalblue;
+    font-weight: bold;
 
-    .comment-name {
-        flex: 1
+    &:hover {
+      cursor: pointer;
     }
-    
-    .comment-submit {
-        width: 200px;
-        border: 1px solid #ddd;
-        color: royalblue;
-        font-weight: bold;
-        
-        &:hover {
-            cursor: pointer;
-        }
-    }
+  }
 }
 ```
 
@@ -282,7 +331,7 @@ You can now go ahead and deploy our comment system. When you send a comment, it 
 
 ![List of comments](/assets/images/2021-06-25-comment-list.png)
 
-Our system comment is now functional! 
+Our system comment is now functional!
 
 But there is still some improvements that can be added, starting by allowing to respond to a comment.
 
@@ -302,16 +351,22 @@ The `requiredFields` list stay the same as the first level messages won't have a
 Then we need to add this field in our `comment_form.html` file.
 
 {% raw %}
+
 ```html
 <!-- _includes/comment_form.html -->
 <form method="POST" action="{{ site.staticman_url }}" class="comment-form">
   <!-- options inputs -->
-  
-  <input name="fields[parent_id]" type="hidden" value="{{ include.parent_id }}">
-  
+
+  <input
+    name="fields[parent_id]"
+    type="hidden"
+    value="{{ include.parent_id }}"
+  />
+
   <!-- user fields inputs -->
 </form>
 ```
+
 {% endraw %}
 
 This field is store in an hidden input field like this and uses the `parent_id` value given by the include.
@@ -319,27 +374,33 @@ This field is store in an hidden input field like this and uses the `parent_id` 
 Now we need to add this form below each comment to be able to reply, with a corresponding parent id. For each comment we will also display the list of comments with its `parent_id`, which are the replies to this comment. To do so we will recursively include `comment_list.html`.
 
 {% raw %}
+
 ```html
 <!-- _includes/comment_list.html -->
-{% assign parent_id = include.parent_id | default: '' %}
-{% assign comments = site.data.comments[page.slug] | where_exp: "item", "item.parent_id == parent_id" %}
-{% assign sorted_comments = comments | sort: 'date' %}
-{% for comment in sorted_comments %}
+{% assign parent_id = include.parent_id | default: '' %} {% assign comments =
+site.data.comments[page.slug] | where_exp: "item", "item.parent_id == parent_id"
+%} {% assign sorted_comments = comments | sort: 'date' %} {% for comment in
+sorted_comments %}
 <div class="comment">
-    <h3>{{comment.name}}</h3>
-    <time class="post-meta dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {{ comment.date | date:"%H:%M - %b %-d, %Y, %Y" }}
-    </time>
-    <p>{{comment.message | strip_html | markdownify }}</p>
-    <div class="comment-reply">
-				<p>Reply to {{ comment.name }}:</p>
-        {% include comment_form.html parent_id=comment._id %}
-			  {% include comment_list.html parent_id=comment._id %}
-    </div>
+  <h3>{{comment.name}}</h3>
+  <time
+    class="post-meta dt-published"
+    datetime="{{ page.date | date_to_xmlschema }}"
+    itemprop="datePublished"
+  >
+    {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+    {{ comment.date | date:"%H:%M - %b %-d, %Y, %Y" }}
+  </time>
+  <p>{{comment.message | strip_html | markdownify }}</p>
+  <div class="comment-reply">
+    <p>Reply to {{ comment.name }}:</p>
+    {% include comment_form.html parent_id=comment._id %} {% include
+    comment_list.html parent_id=comment._id %}
+  </div>
 </div>
 {% endfor %}
 ```
+
 {% endraw %}
 
 This is now what we have (don't forget to add the property `parent_id` to your current messages) if we send a reply. I also added `.comment-reply { padding: 15px; }` in `_sass/comments.scss`.
@@ -351,63 +412,68 @@ It's a start. Be we definitely don't want to display all these reply boxes, but 
 First let's update our comment reply div.
 
 {% raw %}
+
 ```html
 <!-- _includes/comment_list.html -->
 ...
-  <div class="comment-reply">
-    <input id="reply-{{ comment._id}}" type="checkbox" class="checkbox">
-    <label class="open" for="reply-{{ comment._id }}">Reply to {{ comment.name }}</label>
-    <label class="close" for="reply-{{ comment._id }}">X</label>
-    {% include comment_form.html parent_id=comment._id %}
-    {% include comment_list.html parent_id=comment._id %}
-  </div>
+<div class="comment-reply">
+  <input id="reply-{{ comment._id}}" type="checkbox" class="checkbox" />
+  <label class="open" for="reply-{{ comment._id }}"
+    >Reply to {{ comment.name }}</label
+  >
+  <label class="close" for="reply-{{ comment._id }}">X</label>
+  {% include comment_form.html parent_id=comment._id %} {% include
+  comment_list.html parent_id=comment._id %}
+</div>
 ...
 ```
+
 {% endraw %}
 
-What we do here is that we had a checkbox that will not be displayed but instead targeted by the two labels, `reply to ...` to open the reply box and `X` to close it. Each label will be display depending on the state of the checkbox. 
+What we do here is that we had a checkbox that will not be displayed but instead targeted by the two labels, `reply to ...` to open the reply box and `X` to close it. Each label will be display depending on the state of the checkbox.
 
 Here is the css code to make it work.
 
 ```scss
 // _sass/comments.scss
 .comment-reply {
-    padding: 15px;
-    padding-top: 5px;
-    display: flex;
-    flex-direction: column;
+  padding: 15px;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
 
-    .open {
-        font-style: italic;
-    }
+  .open {
+    font-style: italic;
+  }
 
-    .close {
-        display: none;
-        align-self: flex-end;
-        padding: 5px 10px;
-        border: 1px solid #ddd;
-    }
-    
-    .open:hover, .close:hover {
-        cursor: pointer;
-    }
+  .close {
+    display: none;
+    align-self: flex-end;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+  }
 
-    .comment-form {
-        display: none;
-    }
+  .open:hover,
+  .close:hover {
+    cursor: pointer;
+  }
 
-    .checkbox {
-        display: none;
-        &:checked ~ .open {
-            display: none;
-        }
-        &:checked ~ .close {
-            display: block;
-        }
-        &:checked ~ .comment-form {
-            display: flex;
-        }
+  .comment-form {
+    display: none;
+  }
+
+  .checkbox {
+    display: none;
+    &:checked ~ .open {
+      display: none;
     }
+    &:checked ~ .close {
+      display: block;
+    }
+    &:checked ~ .comment-form {
+      display: flex;
+    }
+  }
 }
 ```
 
@@ -424,14 +490,18 @@ To do so we will use a javascript markdown editor called [SimpleMDE](). This is 
 First we need to had the link to the library and its css in our `head` file.
 
 {% raw %}
+
 ```html
 <!-- _includes/head.html -->
 <head>
-		...
+  ...
 
-    <!-- Simple Markdown Editor -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  <!-- Simple Markdown Editor -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css"
+  />
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 </head>
 ```
 
@@ -440,31 +510,40 @@ Then edit the comment form html to add a `SimpleMDE` instance attached to each `
 ```html
 <form method="POST" action="{{ site.staticman_url }}" class="comment-form">
   ...
-  <textarea id="message-{{ include.parent_id }}" class="comment-message" name="fields[message]" placeholder="Comment (markdown accepted)" required></textarea>
-  ...  
+  <textarea
+    id="message-{{ include.parent_id }}"
+    class="comment-message"
+    name="fields[message]"
+    placeholder="Comment (markdown accepted)"
+    required
+  ></textarea>
+  ...
 </form>
 
 <script>
-  var simplemde = new SimpleMDE({ 
-      element: document.getElementById("message-{{ include.parent_id }}"),
-      forceSync: true,
-      spellChecker: false,
-      status: false,
-      placeholder: 'Comment (markdown supported)'
+  var simplemde = new SimpleMDE({
+    element: document.getElementById("message-{{ include.parent_id }}"),
+    forceSync: true,
+    spellChecker: false,
+    status: false,
+    placeholder: "Comment (markdown supported)",
   });
 </script>
 ```
+
 {% endraw %}
 
 I also added some change to its style.
 
 ```scss
 // _sass/comments.scss
-.CodeMirror, .editor-toolbar {
-    border-radius: 0;
+.CodeMirror,
+.editor-toolbar {
+  border-radius: 0;
 }
-.CodeMirror, .CodeMirror-scroll {
-    min-height: 150px;
+.CodeMirror,
+.CodeMirror-scroll {
+  min-height: 150px;
 }
 ```
 
@@ -474,18 +553,19 @@ And here we are!
 
 Currently when we send a comment, we are redirected to the page we are on. This behavior is quite confusing, generally we expect to get a notification that our comment was sent. Also, as our website did have the time to build with the comment we just send, everything look as if nothing happened!
 
-Let's work on improving this part. While using a javascript library would allow use to send our comment and refresh the comment list asynchronously, this is not possible with our solution that is fully static. It is probably one of the main drawback. 
+Let's work on improving this part. While using a javascript library would allow use to send our comment and refresh the comment list asynchronously, this is not possible with our solution that is fully static. It is probably one of the main drawback.
 
 What we can do to improve the experience a bit is to go to a thank you page displaying that the comment will be readable soon.
 
 To do so we have to create a new page, `comment-success.markdown`, that will be almost the same as `index.markdown`.
 
 ```markdown
-<!-- comment-success.markdown -->
----
+## <!-- comment-success.markdown -->
+
 layout: home
 list_title: Read Our Latest Posts
 title: ''
+
 ---
 
 ## Thank you!

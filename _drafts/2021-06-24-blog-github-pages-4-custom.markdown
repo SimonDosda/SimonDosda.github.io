@@ -16,7 +16,7 @@ I divided the tutorial into several parts:
 - [Setting Up]({% post_url 2021-06-22-blog-github-pages-2-setup %})
 - [Create Content]({% post_url 2021-06-23-blog-github-pages-3-content %})
 - Customize Display - you are here
-- [Comment System]({% post_url 2021-06-25-blog-github-pages-5-comment %})
+- [Commenting System]({% post_url 2021-06-25-blog-github-pages-5-comment %})
 - [Analytics]({% post_url 2021-06-26-blog-github-pages-6-analytics %})
 
 Now that we have our website up and running, let's see how we can customize our theme.
@@ -41,10 +41,7 @@ For instance, if we look at the code of the `post` layout, we see the following 
 {% raw %}
 
 ```html
-# _layouts/post.html 
---- 
-layout: default 
----
+# _layouts/post.html --- layout: default ---
 <article
   class="post h-entry"
   itemscope
@@ -229,8 +226,7 @@ We can then add some CSS to our `custom.scss` file to style it.
 
 ```scss
 // _sass/custom.scss
-... 
-.featured-image {
+... .featured-image {
   margin-bottom: 50px;
 
   img {
@@ -252,10 +248,7 @@ Let's improve our home page.
 First, copy the `home.html` in the `_layout` folder. Following the same principle as for the post layout, we can add our featured images.
 
 ```html
-# _layout/home.html 
---- 
-layout: default 
----
+# _layout/home.html --- layout: default ---
 
 <div class="home">
   {% if page.title %}
@@ -298,8 +291,7 @@ And update our `custom.scss` file.
 
 ```scss
 // _sass/custom.scss
-... 
-.post-list > li {
+... .post-list > li {
   display: flex;
   flex-wrap: wrap-reverse;
 
