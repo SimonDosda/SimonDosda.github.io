@@ -44,7 +44,7 @@ In the `Deployment method` of the `Deploy` tab, click on `GitHub`. Once connecte
 Once this is done, you can go to the `Manual deploy` section and click on `Deploy Branch`.
 
 This will deploy an application to [`https://<app-name>.herokuapp.com/`](https://sdosda-gp-blog.herokuapp.com/).
-There should be an error diplayed. It is expected as we haven't configured it yet. We will take care of it now.
+There should be an error displayed. It is expected as we haven't configured it yet. We will take care of it now.
 
 The app will need to be able to access your GitHub repository. To do so, create a new application in GitHub _Settings → Developer settings →GitHub Apps_.
 
@@ -203,9 +203,9 @@ Let's create a `comment-list.html` file in our `_includes` folder to display the
 
 ```html
 <!-- _includes/comment-list.html -->
-{% assign comments = site.data.comments[page.slug] | where_exp: "item", "true"
-%} {% assign sorted_comments = comments | sort: 'date' %} {% for comment in
-sorted_comments %}
+{% assign comments = site.data.comments[page.slug] | where_exp: "item", "true" %} 
+{% assign sorted_comments = comments | sort: 'date' %} 
+{% for comment in sorted_comments %}
 <div class="comment">
   <h3>{{comment.name}}</h3>
   <time
@@ -241,13 +241,13 @@ Let's add another file in our `_include` folder named `comments.html` that will 
   {% if site.data.comments[page.slug] %}
   <div>
     <h2>Comments</h2>
-    {% include comment_list.html %}
+    {% include comment-list.html %}
   </div>
   {% endif %}
 
   <div>
     <h2>Leave a Comment</h2>
-    {% include comment_form.html %}
+    {% include comment-form.html %}
   </div>
 </section>
 ```
@@ -345,7 +345,7 @@ But there are still some improvements that can be added, starting by allowing to
 
 ## Add reply feature
 
-To enable replying to a message, the first thing we need to add is a `parent_id` field in our messages. To Allow this you need to modify the `staticman.yml` file as follow.
+To enable replying to a message, we need to add is a `parent_id` field in our messages. To allow it, add it to the `allowedFields` property in the `staticman.yml` file.
 
 ```yaml
 # staticman.yml
@@ -354,16 +354,17 @@ comments:
   ...
 ```
 
-The `requiredFields` list stay the same as the first level messages won't have a parent message.
+The `requiredFields` list stays the same as only replies will have a parent message.
 
-Then we need to add this field in our `comment_form.html` file.
+Then we need to add this field in our `comment-form.html` file.
 
 {% raw %}
 
 ```html
-<!-- _includes/comment_form.html -->
+<!-- _includes/comment-form.html -->
 <form method="POST" action="{{ site.staticman_url }}" class="comment-form">
   <!-- options inputs -->
+  ...
 
   <input
     name="fields[parent_id]"
@@ -372,23 +373,26 @@ Then we need to add this field in our `comment_form.html` file.
   />
 
   <!-- user fields inputs -->
+  ...
 </form>
 ```
 
 {% endraw %}
 
-This field is store in an hidden input field like this and uses the `parent_id` value given by the include.
+We store the `parent_id` field in a hidden input field using the value given by the `include` variable, which holds the include's inputs.
 
-Now we need to add this form below each comment to be able to reply, with a corresponding parent id. For each comment we will also display the list of comments with its `parent_id`, which are the replies to this comment. To do so we will recursively include `comment_list.html`.
+Now we will add this form below each comment with its corresponding parent id. This will be the input form used to reply to this comment.
+
+For each comment, we will also display its replies. To do so, we will recursively include `comment-list.html` with the `parent_id` as input.
 
 {% raw %}
 
 ```html
-<!-- _includes/comment_list.html -->
-{% assign parent_id = include.parent_id | default: '' %} {% assign comments =
-site.data.comments[page.slug] | where_exp: "item", "item.parent_id == parent_id"
-%} {% assign sorted_comments = comments | sort: 'date' %} {% for comment in
-sorted_comments %}
+<!-- _includes/comment-list.html -->
+{% assign parent_id = include.parent_id | default: '' %} 
+{% assign comments = site.data.comments[page.slug] | where_exp: "item", "item.parent_id == parent_id" %} 
+{% assign sorted_comments = comments | sort: 'date' %}
+{% for comment in sorted_comments %}
 <div class="comment">
   <h3>{{comment.name}}</h3>
   <time
@@ -402,8 +406,8 @@ sorted_comments %}
   <p>{{comment.message | strip_html | markdownify }}</p>
   <div class="comment-reply">
     <p>Reply to {{ comment.name }}:</p>
-    {% include comment_form.html parent_id=comment._id %} {% include
-    comment_list.html parent_id=comment._id %}
+    {% include comment-form.html parent_id=comment._id %} 
+    {% include comment-list.html parent_id=comment._id %}
   </div>
 </div>
 {% endfor %}
@@ -411,39 +415,47 @@ sorted_comments %}
 
 {% endraw %}
 
-This is now what we have (don't forget to add the property `parent_id` to your current messages) if we send a reply. I also added `.comment-reply { padding: 15px; }` in `_sass/comments.scss`.
+We now have the ability to reply each message and we display its replies under it.
+
+Here is the result. For the styel, I just added `.comment-reply { padding: 15px; }` in `_sass/comments.scss`.
 
 ![Comment Reply Feature](/assets/images/2021-06-25-comment-reply-unfinished.png)
 
-It's a start. Be we definitely don't want to display all these reply boxes, but only see them if we hit a reply button. This change can be done quite easily with only some html and css.
+It's a start, but we definitely don't want to display all these reply boxes. They should appear only if we hit a reply button. 
 
-First let's update our comment reply div.
+We will implement this feature using only HTML and CSS.
+
+First, let's update our comment reply box.
 
 {% raw %}
 
 ```html
-<!-- _includes/comment_list.html -->
+<!-- _includes/comment-list.html -->
 ...
 <div class="comment-reply">
   <input id="reply-{{ comment._id}}" type="checkbox" class="checkbox" />
-  <label class="open" for="reply-{{ comment._id }}"
-    >Reply to {{ comment.name }}</label
-  >
+  <label class="open" for="reply-{{ comment._id }}">
+    Reply to {{ comment.name }}
+  </label>
   <label class="close" for="reply-{{ comment._id }}">X</label>
-  {% include comment_form.html parent_id=comment._id %} {% include
-  comment_list.html parent_id=comment._id %}
+  {% include comment-form.html parent_id=comment._id %} 
+  {% include comment-list.html parent_id=comment._id %}
 </div>
 ...
 ```
 
 {% endraw %}
 
-What we do here is that we had a checkbox that will not be displayed but instead targeted by the two labels, `reply to ...` to open the reply box and `X` to close it. Each label will be display depending on the state of the checkbox.
+The display of the reply box is held by a checkbox. This one will not be displayed, but instead targeted by the two labels, `reply to ...` to open the reply box and `X` to close it.
+
+Each label will be displayed depending on the `checked` property of the checkbox.
 
 Here is the css code to make it work.
 
 ```scss
 // _sass/comments.scss
+...
+
 .comment-reply {
   padding: 15px;
   padding-top: 5px;
@@ -485,17 +497,18 @@ Here is the css code to make it work.
 }
 ```
 
-We now have our reply feature functioning!
+We now have a much cleaner reply feature!
 
-![Comment Reply Animation](/assets/images/2021-06-25-comment-list.gif)
+![Comment Reply Animation](/assets/images/2021-06-25-comment-reply.gif)
 
 ## Use a markdown editor for messages
 
-There is still a few improvements we can make to our new functionality. The first one is to use a markdown editor to allow user to easily edit their comments in markdown.
+There are still a few improvements we can make to our new functionality. 
+The first one is to use a markdown editor to allow your readers editing their comments in markdown easily
 
-To do so we will use a javascript markdown editor called [SimpleMDE](). This is quite an elegant solution as this library will target our textarea and replace them, which mean that our solution will sill work if one of our user has javascript disabled on its browser (who does that?).
+To do so, we will use a javascript markdown editor called [SimpleMDE](https://simplemde.com/). This is quite an elegant solution as this library will target our textarea and replace them, which mean that our solution will still work if one of our users has javascript disabled on its browser (who does that?).
 
-First we need to had the link to the library and its css in our `head` file.
+First, we need to add the link to the library and its CSS in our `head` file.
 
 {% raw %}
 
@@ -513,9 +526,10 @@ First we need to had the link to the library and its css in our `head` file.
 </head>
 ```
 
-Then edit the comment form html to add a `SimpleMDE` instance attached to each `textarea`.
+Then edit the comment form HTML to add a `SimpleMDE` instance attached to each `textarea`.
 
 ```html
+<!-- _includes/comment-form.html -->
 <form method="POST" action="{{ site.staticman_url }}" class="comment-form">
   ...
   <textarea
@@ -541,10 +555,14 @@ Then edit the comment form html to add a `SimpleMDE` instance attached to each `
 
 {% endraw %}
 
-I also added some change to its style.
+Note that I also added a unique id to the textarea based on the parent id.
+
+I also added some changes to the editor style.
 
 ```scss
 // _sass/comments.scss
+...
+
 .CodeMirror,
 .editor-toolbar {
   border-radius: 0;
@@ -559,21 +577,20 @@ And here we are!
 
 ## Better management of redirect
 
-Currently when we send a comment, we are redirected to the page we are on. This behavior is quite confusing, generally we expect to get a notification that our comment was sent. Also, as our website did have the time to build with the comment we just send, everything look as if nothing happened!
+Currently, when we send a comment, we are redirected back to the article page. This behavior can be pretty confusing. Usually, we expect to get a notification that our comment was sent. Moreover, as our website need to be rebuilt to display the comment we sent, everything looks as if nothing happened!
 
-Let's work on improving this part. While using a javascript library would allow use to send our comment and refresh the comment list asynchronously, this is not possible with our solution that is fully static. It is probably one of the main drawback.
+Let's work on improving this part. 
 
-What we can do to improve the experience a bit is to go to a thank you page displaying that the comment will be readable soon.
+To improve the experience, we will redirect readers to a thank-you page displaying that the comment will be readable soon.
 
-To do so we have to create a new page, `comment-success.markdown`, that will be almost the same as `index.markdown`.
+Let's create a new page, `comment-success.markdown` in our root directory, that will be almost the same as `index.markdown`.
 
 ```markdown
-## <!-- comment-success.markdown -->
-
+<!-- comment-success.markdown -->
+---
 layout: home
 list_title: Read Our Latest Posts
 title: ''
-
 ---
 
 ## Thank you!
@@ -583,8 +600,8 @@ Your comment was successfully sent!
 It will appear on our website soon.
 ```
 
-Now change the redirect option in `_includes/comment-form.html` to `<input name="options[redirect]" type="hidden" value="{{ page.url | absolute_url }}">`.
+Now change the redirect option in `_includes/comment-form.html` to `<input name="options[redirect]" type="hidden" value="{{ 'comment-success' | absolute_url }}">`.
 
 And that's it!
 
-Of course there is a lot that could still be done to improve our comment system, but that's already quite a start. And we fully build it ourselves!
+Of course, there is a lot that could still be done to improve our comment system. But that's already a good start, and we fully build it ourselves!
