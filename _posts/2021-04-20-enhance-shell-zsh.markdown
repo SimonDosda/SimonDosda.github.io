@@ -104,7 +104,7 @@ To do so, go to the theme file that you want to modify (in my case `~/.oh-my-zsh
 Here is what I came up with:
 
 ```bash
-PROMPT='%{$fg[red]%}$(virtualenv_prompt_info)%{$reset_color%}%\
+PROMPT='%{$fg[red]%}$(virtualenv_prompt_info)%{$reset_color%}\
 %{$fg[cyan]%}%n%{$reset_color%}:\
 %{$fg[green]%}%~%{$reset_color%}\
 $(git_prompt_info) %(!.#.$) '
