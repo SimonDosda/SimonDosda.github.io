@@ -15,7 +15,7 @@ I divided the tutorial into several parts:
 - [Introduction]({% post_url 2021-09-13-blog-github-pages-1-introduction %})
 - [Setting Up]({% post_url 2021-09-14-blog-github-pages-2-setup %})
 - Create Content **<- you are here**
-- [Customize Display] - to come soon
+- [Customize Display]({% post_url 2021-09-16-blog-github-pages-4-custom %})
 - [Commenting System] - to come soon
 - [Analytics] - to come soon
 
@@ -177,4 +177,4 @@ You now know the basics of content management for your blog.
 
 You can find the code for this part [here](https://github.com/SimonDosda/gp-blog/tree/step-2-content).
 
-Our next step is now to [customize the appareace of our website]({% post_url 2021-09-15-blog-github-pages-3-content %}).
+Our next step is now to [customize the appareace of our website]({% post_url 2021-09-16-blog-github-pages-4-custom %}).

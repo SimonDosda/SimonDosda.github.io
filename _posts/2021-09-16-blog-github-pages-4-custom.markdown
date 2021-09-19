@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Customize Your Jekyll Website
-date: 2021-06-24
-last_modified_at: 2021-06-23
-cover_image: 2021-06-24-feature.png
+date: 2021-09-16
+last_modified_at: 2021-09-16
+cover_image: 2021-09-16-feature.jpg
 author: Simon Dosda
 categories: ruby jekyll
 ---
@@ -12,15 +12,14 @@ This article is part of a series showing you how to quickly and freely build and
 
 I divided the tutorial into several parts:
 
-- [Intr
 - [Introduction]({% post_url 2021-09-13-blog-github-pages-1-introduction %})
-- [Setting Up]({% post_url 2021-06-22-blog-github-pages-2-setup %})
-- [Create Content]({% post_url 2021-06-23-blog-github-pages-3-content %})
-- Customize Display - you are here
-- [Commenting System]({% post_url 2021-06-25-blog-github-pages-5-comment %})
-- [Analytics]({% post_url 2021-06-26-blog-github-pages-6-analytics %})
+- [Setting Up]({% post_url 2021-09-14-blog-github-pages-2-setup %})
+- [Create Content]({% post_url 2021-09-15-blog-github-pages-3-content %})
+- [Customize Display] **<- you are here**
+- [Commenting System] - to come soon
+- [Analytics] - to come soon
 
-Now that we have our website up and running, let's see how we can customize our theme.
+Now that we have started adding content to our website, let's see how we can customize its appearance.
 
 ## How Jekyll generates pages
 
@@ -42,7 +41,10 @@ For instance, if we look at the code of the `post` layout, we see the following 
 {% raw %}
 
 ```html
-# _layouts/post.html --- layout: default ---
+<!-- _layouts/post.html -->
+---
+layout: default
+---
 <article
   class="post h-entry"
   itemscope
@@ -69,12 +71,13 @@ For instance when you write a blog post using this layout, its content is inject
 
 We can also see the use of Front Matter metadata with the title of the post.
 The title is displayed using the `page` variable, which contains all the variables defined in the Front Matter of a template.
+
 These variables can be overridden by the children of the template. In this case, there is no title defined in the Front Matter of our template, it only makes sense for posts using this template.
 
 Now, if we look at the default layout, this is what we see.
 
 ```html
-# _layouts/default.html
+<!-- _layouts/default.html -->
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
   {% include head.html %}
@@ -102,19 +105,23 @@ Let's start gently by adding a favicon to our website. If you are familiar with 
 
 You can override any file of your theme by putting it in your own project.
 In this case, we can create our own `_includes/head.html`, copy the code from GitHub and modify it to add our favicon.
+{% endraw %}
 
 For my favicon, I generated one using [a lion emoji](https://favicon.io/emoji-favicons/lion) for the sake of the exercise.
 
+{% raw %}
 ```html
-# _includes/head.html
+<!-- _includes/head.html -->
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   {% seo %}
   <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}" />
-  {% feed_meta %} {% if jekyll.environment == 'production' and
-  site.google_analytics %} {% include google-analytics.html %} {% endif %}
+  {% feed_meta %} 
+  {% if jekyll.environment == 'production' and site.google_analytics %} 
+    {% include google-analytics.html %} 
+  {% endif %}
 
   <link
     rel="apple-touch-icon"
@@ -145,11 +152,11 @@ For instance, let's modify our header by adding our new logo.
 To do so we need to add and modify the `_includes/header.html` file.
 
 ```html
-# _includes/header.html
+<!-- _includes/header.html --> 
 <header class="site-header" role="banner">
   <div class="wrapper">
-    {% assign default_paths = site.pages | map: "path" %} {% assign page_paths =
-    site.header_pages | default: default_paths %}
+    {% assign default_paths = site.pages | map: "path" %} 
+    {% assign page_paths = site.header_pages | default: default_paths %}
     <a class="site-title" rel="author" href="{{ '/' | relative_url }}">
       <img src="{{ 'favicon-32x32.png' | relative_url }}" />
       {{ site.title | escape }}
@@ -170,8 +177,8 @@ Another possibility is to generate a new file that will be loaded after the them
 
 First, let's create the `assets/main.scss` file with the following code.
 
-```ruby
-# assets/main.scss
+```scss
+// assets/main.scss
 ---
 ---
 
@@ -182,7 +189,7 @@ First, let's create the `assets/main.scss` file with the following code.
 Compared to the default file, I just added an import of the file `custom`. We can now create this file in the `_sass` folder and add some css.
 
 ```scss
-// assets/main.scss
+// _sass/custom.scss
 .site-title {
   color: orangered;
   &:visited {
@@ -197,14 +204,14 @@ Here I modify the site title color to match our lion. My main point is to show y
 
 Something you will see in almost every blog is a featured image displayed in the blog list and at the top of an article.
 
-Unfortunately, this is not currently managed by Jekyll, so let's implement this feature ourselves.
+Unfortunately, this is not currently managed by _Jekyll_, so let's implement this feature ourselves.
 
 This time we want to modify the blog layout directly. We can create our own version in `_layouts/post.html`.
 
 What we are going to do is to check for a `featured_image` variable, and if it exists, we will display it on top of our title by adding the following snippet.
 
 ```html
-{% if page.feature_image %}
+{% if page.featured_image %}
 <div class="featured-image">
   <img src="{{ '/assets/' | append: page.featured_image | relative_url }}" />
 </div>
@@ -217,9 +224,9 @@ Let's add a featured image to our last post. Put the image you want in your asse
 ---
 layout: post
 title: "Write a Post"
-date: 2021-05-31
+date: 2021-06-31
 categories: jekyll blogging
-feature_image: feature-image.jpg
+featured_image: featured-image.jpg
 ---
 ```
 
@@ -227,7 +234,8 @@ We can then add some CSS to our `custom.scss` file to style it.
 
 ```scss
 // _sass/custom.scss
-... .featured-image {
+... 
+.featured-image {
   margin-bottom: 50px;
 
   img {
@@ -240,7 +248,7 @@ We can then add some CSS to our `custom.scss` file to style it.
 
 Here is the result.
 
-![Post With Image](/assets/images/2021-06-24-post.png)
+![Post With Image](/assets/images/2021-09-16-post.png)
 
 ## Updating the home to display the featured image
 
@@ -249,41 +257,51 @@ Let's improve our home page.
 First, copy the `home.html` in the `_layout` folder. Following the same principle as for the post layout, we can add our featured images.
 
 ```html
-# _layout/home.html --- layout: default ---
+<!-- _layout/home.html -->
+--- 
+layout: default 
+---
 
 <div class="home">
   {% if page.title %}
-  <h1 class="page-heading">{{ page.title }}</h1>
-  {% endif %} {{ content }} {% if site.posts.size > 0 %}
-  <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-  <ul class="post-list">
-    {% for post in site.posts %}
-    <li>
-      <div>
-        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y"
-        %}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {% if site.show_excerpts %} {{ post.excerpt }} {% endif %}
-      </div>
-      {% if post.featured_image %}
-      <div class="featured-image">
-        <img
-          src="{{ '/assets/' | append: post.featured_image | relative_url }}"
-        />
-      </div>
-      {% endif %}
-    </li>
-    {% endfor %}
-  </ul>
+    <h1 class="page-heading">{{ page.title }}</h1>
+  {% endif %} 
+  {{ content }} 
+  {% if site.posts.size > 0 %}
+    <h2 class="post-list-heading">
+      {{ page.list_title | default: "Posts" }}
+    </h2>
+    <ul class="post-list">
+      {% for post in site.posts %}
+      <li>
+        <div>
+          {% assign date_format = site.minima.date_format 
+            | default: "%b %-d, %Y" %}
+          <span class="post-meta">
+            {{ post.date | date: date_format }}
+          </span>
+          <h3>
+            <a class="post-link" href="{{ post.url | relative_url }}">
+              {{ post.title | escape }}
+            </a>
+          </h3>
+          {% if site.show_excerpts %} 
+            {{ post.excerpt }} {% endif %}
+        </div>
+        {% if post.featured_image %}
+        <div class="featured-image">
+          <img
+            src="{{ '/assets/' | append: post.featured_image | relative_url }}"
+          />
+        </div>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
 
-  <p class="rss-subscribe">
-    subscribe <a href="{{ '/feed.xml' | relative_url }}">via RSS</a>
-  </p>
+    <p class="rss-subscribe">
+      subscribe <a href="{{ '/feed.xml' | relative_url }}">via RSS</a>
+    </p>
   {% endif %}
 </div>
 ```
@@ -306,8 +324,13 @@ And update our `custom.scss` file.
 }
 ```
 
+{% endraw %}
 And here is the result.
 
-![Responsive Posts Image](/assets/images/2021-06-24-home.gif)
+![Responsive Posts Image](/assets/images/2021-09-16-home.gif)
 
-{% endraw %}
+Here you are, you now have all the basics to create your personal blog at your own image.
+
+You can find the code for this part [here](https://github.com/SimonDosda/gp-blog/tree/step-3-custom).
+
+Our next step is now to add a commenting system to our blog.

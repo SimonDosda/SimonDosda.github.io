@@ -15,7 +15,7 @@ I divided the tutorial into several parts:
 - [Introduction]({% post_url 2021-09-13-blog-github-pages-1-introduction %})
 - Setting Up **<- you are here**
 - [Create Content]({% post_url 2021-09-15-blog-github-pages-3-content %})
-- [Customize Display] - to come soon
+- [Customize Display]({% post_url 2021-09-16-blog-github-pages-4-custom %})
 - [Commenting System] - to come soon
 - [Analytics] - to come soon
 
