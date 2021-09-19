@@ -12,7 +12,8 @@ This article is part of a series showing you how to quickly and freely build and
 
 I divided the tutorial into several parts:
 
-- [Introduction]({% post_url 2021-06-21-blog-github-pages-1-foreword %})
+- [Intr
+- [Introduction]({% post_url 2021-09-13-blog-github-pages-1-introduction %})
 - [Setting Up]({% post_url 2021-06-22-blog-github-pages-2-setup %})
 - [Create Content]({% post_url 2021-06-23-blog-github-pages-3-content %})
 - Customize Display - you are here

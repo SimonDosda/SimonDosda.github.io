@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Create Blog Posts And Static Pages With Jekyll and GitHub Pages
-date: 2021-06-23
-last_modified_at: 2021-06-23
-cover_image: 2021-06-23-feature.png
+date: 2021-09-15
+last_modified_at: 2021-09-15
+cover_image: 2021-09-15-feature.jpg
 author: Simon Dosda
 categories: ruby jekyll
 ---
@@ -12,12 +12,12 @@ This article is part of a series showing you how to quickly and freely build and
 
 I divided the tutorial into several parts:
 
-- [Introduction]({% post_url 2021-06-21-blog-github-pages-1-foreword %})
-- [Setting Up]({% post_url 2021-06-22-blog-github-pages-2-setup %})
-- Create Content - you are here
-- [Customize Display]({% post_url 2021-06-24-blog-github-pages-4-custom %})
-- [Commenting System]({% post_url 2021-06-25-blog-github-pages-5-comment %})
-- [Analytics]({% post_url 2021-06-26-blog-github-pages-6-analytics %})
+- [Introduction]({% post_url 2021-09-13-blog-github-pages-1-introduction %})
+- [Setting Up]({% post_url 2021-09-14-blog-github-pages-2-setup %})
+- Create Content **<- you are here**
+- [Customize Display] - to come soon
+- [Commenting System] - to come soon
+- [Analytics] - to come soon
 
 Now that we have initialized our project, let's see how to manage our content by:
 
@@ -52,12 +52,11 @@ Here is the updated code of the file.
 {% raw %}
 
 ```markdown
-## <!-- index.markdown -->
-
+<!-- index.markdown -->
+---
 layout: home
 list_title: Read Our Latest Posts
 title: ''
-
 ---
 
 # Github Pages Demo Blog
@@ -104,18 +103,18 @@ Here is the code and the result.
 
 ## [{{ repo.name }}]({{ repo.html_url }})
 
-{{repo.description}}
+{{ repo.description }}
 
-Topics: {{ repo.topics | array_to_sentence_string}}
+Topics: {{ repo.topics | array_to_sentence_string }}
 
-Last updated: {{repo.updated_at | date_to_string}}
+Last updated: {{ repo.updated_at | date_to_string }}
 
 {% endif %}
 
 {% endfor %}
 ```
 
-![Projects Page](/assets/images/2021-06-23-projects.png)
+![Projects Page](/assets/images/2021-09-15-projects.png)
 
 Notice that the _Projects_ link was added automatically to the navigation bar.
 
@@ -133,7 +132,7 @@ Let's create a new blog post explaining furthermore how to write one. Go ahead a
 ---
 layout: post
 title: "Write a Post"
-date: 2021-05-31
+date: 2021-06-31
 categories: jekyll blogging
 ---
 
@@ -171,5 +170,11 @@ We then have our article written in _markdown_, where I display a few extra tips
 
 Below is the corresponding result.
 
-![Blog Post](/assets/images/2021-06-23-post.png)
+![Blog Post](/assets/images/2021-09-15-post.png)
 {% endraw %}
+
+You now know the basics of content management for your blog.
+
+You can find the code for this part [here](https://github.com/SimonDosda/gp-blog/tree/step-2-content).
+
+Our next step is now to [customize the appareace of our website]({% post_url 2021-09-15-blog-github-pages-3-content %}).

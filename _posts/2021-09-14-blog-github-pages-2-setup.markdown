@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Setup Your Free Portfolio With A Blog Using GitHub Pages
-date: 2021-06-22
-last_modified_at: 2021-06-23
-cover_image: 2021-06-22-feature.png
+date: 2021-09-14
+last_modified_at: 2021-09-14
+cover_image: 2021-09-14-feature.jpg
 author: Simon Dosda
 categories: ruby jekyll
 ---
@@ -11,22 +11,21 @@ categories: ruby jekyll
 This article is part of a series showing you how to quickly and freely build and host your own [Jekyll](https://jekyllrb.com/) blog on [GitHub Pages](https://pages.github.com/). This series will also cover more advanced topics like adding a comment system directly in our code using [Staticman](https://staticman.net/) and adding privacy-friendly but still free analytics using [Umami](https://umami.is/).
 
 I divided the tutorial into several parts:
-{% raw %}
 
-- [Introduction]({% post_url 2021-06-21-blog-github-pages-1-foreword %})
-- Setting Up - you are here
-- [Create Content]({% post_url 2021-06-23-blog-github-pages-3-content %})
-- [Customize Display]({% post_url 2021-06-24-blog-github-pages-4-custom %})
-- [Commenting System]({% post_url 2021-06-25-blog-github-pages-5-comment %})
-- [Analytics]({% post_url 2021-06-26-blog-github-pages-6-analytics %})
-  {% endraw %}
-  Let's now see how we can set up and deploy our website.
+- [Introduction]({% post_url 2021-09-13-blog-github-pages-1-introduction %})
+- Setting Up **<- you are here**
+- [Create Content]({% post_url 2021-09-15-blog-github-pages-3-content %})
+- [Customize Display] - to come soon
+- [Commenting System] - to come soon
+- [Analytics] - to come soon
+
+Now, let's see how we can set up and deploy our website.
 
 ## Create your GitHub Pages repository
 
 To deploy your website using _GitHub Pages_, you need to create a new public repository using the following convention for the name: `<username>.github.io`.
 
-![GitHub Pages Repository](/assets/images/2021-06-22-repo.png)
+![GitHub Pages Repository](/assets/images/2021-09-14-repo.png)
 
 Once you have done this, the content of your repository will be deployed on `https://<username>.github.io`. You can try adding an `index.html` file at the root of your repository with "Hello World" or anything you fancy written in it to check everything works as expected.
 
@@ -52,7 +51,7 @@ We can now initialize our _Jekyll_ project in the repository we just created wit
 jekyll new .
 ```
 
-Then, open the _Gemfile_ file and follow the instruction to deploy on \_GitHub Pages by commenting the `gem "jekyll"` line and uncommenting the `gem "github-pages"` one.
+Then, open the _Gemfile_ file and follow the instruction to deploy on _GitHub Pages_ by commenting the `gem "jekyll"` line and uncommenting the `gem "github-pages"` one.
 
 ```bash
 # This will help ensure the proper Jekyll version is running.
@@ -67,7 +66,7 @@ For the version (here 214), you can find the latest version [here](https://pages
 
 You can then type the command `bundle update` to install your dependencies and serve your website locally with the command `bundle exec jekyll serve --livereload`.
 
-Your new blog is now served on [localhost:4000](http://localhost:4000). As you can see, it needs some setup.
+Your new blog is now served on [localhost:4000](http://localhost:4000). As you can see, it needs some customization.
 
 ## Edit the global configuration
 
@@ -77,7 +76,7 @@ You can also enter your _Twitter_ username or comment the corresponding line if 
 
 You can also add the property `show_excerpts: true` to display posts' excerpts on the home page.
 
-More anedoctical, you can change the permalink generation for pages with the `permalink` attribute. I like to use a less nested structure like the following.
+More anecdotical, you can change the permalink generation for pages with the `permalink` attribute. I like to use a less nested structure like the following.
 
 ```yaml
 permalink: /:collection/:year-:month-:day-:title:output_ext
@@ -92,3 +91,5 @@ Note that you can edit the branch which deploys your website on your GitHub repo
 Here we are. We now have our blog backbone up and running!
 
 You can find the code for this part [here](https://github.com/SimonDosda/gp-blog/tree/step-1-setup).
+
+Our next step is now to [add some content to our website]({% post_url 2021-09-15-blog-github-pages-3-content %}).
