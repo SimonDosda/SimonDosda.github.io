@@ -15,8 +15,9 @@ I divided the tutorial into several parts:
 - [Introduction]({% post_url 2021-09-13-blog-github-pages-1-introduction %})
 - [Setting Up]({% post_url 2021-09-14-blog-github-pages-2-setup %})
 - [Create Content]({% post_url 2021-09-15-blog-github-pages-3-content %})
-- [Customize Display] **<- you are here**
-- [Commenting System] - to come soon
+- Customize Display **<- you are here**
+- [Commenting System - Part 1]({% post_url 2021-09-17-blog-github-pages-5-comment-1 %})
+- [Commenting System - Part 2]({% post_url 2021-09-18-blog-github-pages-6-comment-2 %})
 - [Analytics] - to come soon
 
 Now that we have started adding content to our website, let's see how we can customize its appearance.
@@ -333,4 +334,4 @@ Here you are, you now have all the basics to create your personal blog at your o
 
 You can find the code for this part [here](https://github.com/SimonDosda/gp-blog/tree/step-3-custom).
 
-Our next step is now to add a commenting system to our blog.
+Our next step is now [to add a commenting system to our blog]({% post_url 2021-09-17-blog-github-pages-5-comment-1 %}).
