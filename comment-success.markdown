@@ -8,4 +8,4 @@ title: ''
 
 Your comment was successfully sent!
 
-It will appear on our website soon.
+It will appear on the website soon.
