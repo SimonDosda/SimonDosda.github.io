@@ -18,7 +18,7 @@ I divided the tutorial into several parts:
 - [Customize Display]({% post_url 2021-09-16-blog-github-pages-4-custom %})
 - Commenting System - Part 1 **<- you are here**
 - [Commenting System - Part 2]({% post_url 2021-09-18-blog-github-pages-6-comment-2 %})
-- [Analytics] - to come soon
+- [Analytics]({% post_url 2021-09-19-blog-github-pages-7-analytics %})
 
 Now that we have our blog, let's see how to add some interactivity to it with a commenting system.
 
@@ -352,4 +352,4 @@ Our comment system is now functional!
 
 You can find the code for this part [here](https://github.com/SimonDosda/gp-blog/tree/step-4.1-comment).
 
-This comment system is still very basic, our next step will be to [add some features like allowing to reply to a comment or addind a markdown editor]({% post_url 2021-09-18-blog-github-pages-6-comment-2 %}).
+This comment system is still very basic, our next step will be to [add some features like allowing to reply to a comment or adding a markdown editor]({% post_url 2021-09-18-blog-github-pages-6-comment-2 %}).

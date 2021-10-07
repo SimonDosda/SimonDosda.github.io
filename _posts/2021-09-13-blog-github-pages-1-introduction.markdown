@@ -22,7 +22,7 @@ I divided this tutorial into several parts:
 - [Customize Display]({% post_url 2021-09-16-blog-github-pages-4-custom %})
 - [Commenting System - Part 1]({% post_url 2021-09-17-blog-github-pages-5-comment-1 %})
 - [Commenting System - Part 2]({% post_url 2021-09-18-blog-github-pages-6-comment-2 %})
-- [Analytics] - to come soon
+- [Analytics]({% post_url 2021-09-19-blog-github-pages-7-analytics %})
 
 ## Foreword
 
