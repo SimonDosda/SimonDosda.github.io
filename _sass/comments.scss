@@ -20,9 +20,8 @@
 
   .comment-message,
   .comment-name {
-    font-size: 16px;
+    font-size: 1rem;
     padding: 15px;
-    border: 1px solid #ddd;
     margin: 0;
   }
 
@@ -33,17 +32,23 @@
 
   .comment-bottom {
     display: flex;
+    border: 1px solid #ddd;
+    border-radius: 0 0 4px 4px;
   }
 
   .comment-name {
     flex: 1;
+    border: none;
+    background-color: transparent;
   }
 
   .comment-submit {
     width: 200px;
-    border: 1px solid #ddd;
     color: royalblue;
     font-weight: bold;
+    border: none;
+    border-left: 1px solid #ddd;
+    border-radius: 0 0 5px 0;
 
     &:hover {
       cursor: pointer;
@@ -91,9 +96,13 @@
   }
 }
 
-.CodeMirror,
-.editor-toolbar {
+// .CodeMirror,
+// .editor-toolbar {
+//   border-radius: 0;
+// }
+.comment-form .CodeMirror {
   border-radius: 0;
+  border-bottom: none;
 }
 .CodeMirror,
 .CodeMirror-scroll {

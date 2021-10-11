@@ -3,7 +3,7 @@ layout: post
 title: Follow Your Website Analitycs With Umami
 date: 2021-09-19
 last_modified_at: 2021-09-19
-cover_image: 2021-09-19-feature.png
+cover_image: 2021-09-19-feature.jpg
 author: Simon Dosda
 categories: ruby jekyll
 ---
@@ -107,6 +107,19 @@ Click then on `get tracking code` to get the script line to add in your website 
 
 ![Add Traking Code](/assets/images/2021-09-19-umami-traking-code.gif)
 
+{% raw %}
+```html
+<!-- _includes/head.html -->
+...
+{%- if jekyll.environment == 'production' -%}
+        <script async defer 
+            data-website-id="<your-id>" 
+            src="<your-src>">
+        </script>
+{%- endif -%}
+```
+{% endraw %}
+
 Redeploy your website with it and visit it, then go to your Umami dashboard, you should see your first visit! 
 
 ![Analytics Display](/assets/images/2021-09-19-analytics.png)
@@ -117,7 +130,7 @@ Yeah, my first visitor, myself!
 
 Congrats, you have reach the end of this tutorial!
 
-I hope it was benificial to you and that you enjoyed it.
+I hope it was benificial to you and that you enjoyed it. You can find the code of this sample project [here](<https://github.com/SimonDosda/gp-blog>).
 
 We covered quite a lot, from setting up and deploying your blog to its customization and the add of features like a commenting systen or analytics.
 
