@@ -39,9 +39,9 @@ In order to use _staticman_, we need to deploy it on a server. This app will be 
 
 We will use [Heroku](https://www.heroku.com) to deploy our staticman instance. You might need to create an account first if you don't have one.
 
-Hence this is done, go the the [staticman GitHub repository](https://github.com/eduardoboucas/staticman) and fork it.
+Hence this is done, go to the [staticman GitHub repository](https://github.com/eduardoboucas/staticman) and fork it.
 
-On your Heroku dashboard, go to `New -> Create new app`, Type the name that you want for your app and hit `Create app`.
+On your Heroku dashboard, go to `New -> Create new app`, type the name that you want for your app, and hit `Create app`.
 
 In the `Deployment method` of the `Deploy` tab, click on `GitHub`. Once connected, choose the `staticman` repository and hit `Connect`.
 
@@ -64,7 +64,7 @@ Create an app with the following inputs:
 
 Once your app is created, go to `General → Private keys` and hit `Generate a private key`.
 
-Finaly, go to `Install App` and hit `Install`.
+Finally, go to `Install App` and hit `Install`.
 
 Go back to Heroku. Now it is time to configure our app.
 
@@ -81,7 +81,7 @@ Once the deployment is over, you should now see a welcome message when you visit
 ## Adding Staticman to our project
 
 We now need to add staticman to our project.
-First we will create a `staticman.yml` file that defines its configuration as follow.
+First, we will create a `staticman.yml` file that defines its configuration as follow.
 
 ```yaml
 # staticman.yml
@@ -120,7 +120,7 @@ comments:
       options:
         format: "timestamp-seconds"
 
-  # Whether entries need to be appproved before they are published to the main
+  # Whether entries need to be approved before they are published to the main
   # branch. If set to `true`, a pull request will be created for your approval.
   # Otherwise, entries will be published to the main branch automatically.
   moderation: false
@@ -138,7 +138,7 @@ comments:
   requiredFields: ["name", "message"]
 ```
 
-You might have to change the name of the `branch` from which you are deploying and you will have to update the `allowedOrigins` value with your domain name, or remove it if you don't feel like you need this security.
+You might have to change the name of the `branch` from which you are deploying and you will have to update the `allowedOrigins` value with your domain name or remove it if you don't feel like you need this security.
 
 This post will focus on building a simple comment system where any user can enter a `name` and a `message` in markdown. We will allow them to respond to other messages as well.
 
@@ -153,7 +153,7 @@ staticman_url: https://<app-name>/v3/entry/github/<username>/<repo>/<branch>/com
 
 ## Creating the input form
 
-We will now build the form where our readers will be able to write their name and comment.
+We will now build the form where our readers will be able to write their names and comments.
 
 In the `_includes` folder, add a new `comment-form.html` file.
 

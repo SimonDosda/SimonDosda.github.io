@@ -32,7 +32,7 @@ Once you have done this, the content of your repository will be deployed on `htt
 
 Note that you can deploy a website from any repository, but in this case, the associated URL will be `https://<username>.github.io/<repository-name>`. This feature is very convenient to deploy documentation of your projects, for instance.
 
-For this tutorial, I will use a specific repository called [gp-blog](https://github.com/SimonDosda/gp-blog) (for Github Pages Blog), which will therefore deploy at [https://simondosda.github.io/gp-blog])(https://simondosda.github.io/gp-blog), but you most probably want to deploy your portfolio at the root folder.
+For this tutorial, I will use a specific repository called [gp-blog](https://github.com/SimonDosda/gp-blog) (for Github Pages Blog), which will therefore deploy at [https://simondosda.github.io/gp-blog](https://simondosda.github.io/gp-blog), but you most probably want to deploy your portfolio at the root folder.
 
 Now that our git repository is ready, let's see how to set up _Jekyll_ in it.
 

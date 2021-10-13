@@ -178,4 +178,4 @@ You now know the basics of content management for your blog.
 
 You can find the code for this part [here](https://github.com/SimonDosda/gp-blog/tree/step-2-content).
 
-Our next step is now to [customize the appareace of our website]({% post_url 2021-09-16-blog-github-pages-4-custom %}).
+Our next step is now to [customize the appearance of our website]({% post_url 2021-09-16-blog-github-pages-4-custom %}).
