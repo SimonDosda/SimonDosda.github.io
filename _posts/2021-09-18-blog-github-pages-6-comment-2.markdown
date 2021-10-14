@@ -190,7 +190,7 @@ We now have a much cleaner reply feature!
 There are still a few improvements we can make to our new functionality. 
 The first one is to use a markdown editor to allow your readers editing their comments in markdown easily
 
-To do so, we will use a javascript markdown editor called [SimpleMDE](https://simplemde.com/). This is quite an elegant solution as this library will target our textarea and replace them, which mean that our solution will still work if one of our users has javascript disabled on its browser (who does that?).
+To do so, we will use a javascript markdown editor called [SimpleMDE](https://simplemde.com/). This is quite an elegant solution as this library will target our textarea and replace them, which means that our solution will still work if one of our users has javascript disabled on its browser (who does that?).
 
 First, we need to add the link to the library and its CSS in our `head` file.
 
@@ -292,7 +292,7 @@ Now change the redirect option in `_includes/comment-form.html`.
     name="options[redirect]" 
     type="hidden" 
     value="{{ 'comment-success' | absolute_url }}"
->`
+>
 ```
 
 And that's it!
@@ -304,4 +304,4 @@ You can find the code for this part [here](https://github.com/SimonDosda/gp-blog
 
 That's quite a journey since we started setting up our blog!
 
-In our last chapter, we will see how to implement free privacy-friendly analytics.
+In our last chapter, we will see how to implement [free privacy-friendly analytics]({% post_url 2021-09-19-blog-github-pages-7-analytics %}).

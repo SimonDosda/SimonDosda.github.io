@@ -23,7 +23,7 @@ I divided the tutorial into several parts:
 Now that our blog is fully functional, our main job is to write interesting articles. 
 
 But you are writing a blog and sharing it with the world, you probably want people to read it.
-To do so you will have to bring traffic to you website, and will therefore need to be able to follow your it, know which article attracts the most people, on so on.
+To do so you will have to bring traffic to your website, and will therefore need to be able to follow your it, know which article attracts the most people, on so on.
 
 
 ## Picking a Traffic Analytics solution
@@ -87,7 +87,7 @@ Then go back to the app page and, in the `Settings -> Config Vars`, add an `HASH
 
 ![App Environment Variables](/assets/images/2021-09-19-config-vars.png)
 
-Phew, we finaly ended the configuration of our app!
+Phew, we finally ended the configuration of our app!
 
 You can now go to the `Deploy` section and click `Deploy Branch` in the `Manual deploy` part.
 
@@ -103,7 +103,7 @@ We now have to add our website to the application. To do so, go to `Settings -> 
 
 ![Add Website](/assets/images/2021-09-19-add-website.png)
 
-Click then on `get tracking code` to get the script line to add in your website head.
+Click then on `get tracking code` to get the script line to add to your website head.
 
 ![Add Traking Code](/assets/images/2021-09-19-umami-traking-code.gif)
 
@@ -126,16 +126,16 @@ Redeploy your website with it and visit it, then go to your Umami dashboard, you
 
 Yeah, my first visitor, myself!
 
-## Wrapp up
+## Wrap up
 
-Congrats, you have reach the end of this tutorial!
+Congrats, you have reached the end of this tutorial!
 
-I hope it was benificial to you and that you enjoyed it. You can find the code of this sample project [here](<https://github.com/SimonDosda/gp-blog>).
+I hope it was beneficial to you and that you enjoyed it. You can find the code of this sample project [here](<https://github.com/SimonDosda/gp-blog>).
 
-We covered quite a lot, from setting up and deploying your blog to its customization and the add of features like a commenting systen or analytics.
+We covered quite a lot, from setting up and deploying your blog to its customization and the add of features like a commenting system or analytics.
 
 A lot can still be done, and I encourage you to explore new possibilities from here.
 
-If there is a subject you are particularly intrested in, please share it in the comment section.
+If there is a subject you are particularly interested in, please share it in the comment section.
 
 But in any case, don't forget that the most important on the website is the content ;).
