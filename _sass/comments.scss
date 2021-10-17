@@ -16,13 +16,19 @@
 .comment-form {
   display: flex;
   flex-direction: column;
-  margin-top: 25px;
+  margin-top: 24px;
 
   .comment-message,
   .comment-name {
     font-size: 1rem;
-    padding: 15px;
+    padding: 16px;
     margin: 0;
+  }
+
+  .comment-name {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 16px;
   }
 
   .comment-message {
@@ -30,35 +36,27 @@
     resize: none;
   }
 
-  .comment-bottom {
-    display: flex;
-    border: 1px solid #ddd;
-    border-radius: 0 0 4px 4px;
-  }
-
-  .comment-name {
-    flex: 1;
-    border: none;
-    background-color: transparent;
+  .g-recaptcha {
+    margin-top: 16px;
   }
 
   .comment-submit {
+    margin-top: 16px;
+    padding: 16px;
     width: 200px;
-    color: royalblue;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #555;
+    font-size: 1.1rem;
     font-weight: bold;
-    border: none;
-    border-left: 1px solid #ddd;
-    border-radius: 0 0 5px 0;
-
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
 }
 
 .comment-reply {
-  padding: 15px;
-  padding-top: 5px;
+  padding: 16px;
+  padding-top: 4px;
   display: flex;
   flex-direction: column;
 
@@ -71,6 +69,7 @@
     align-self: flex-end;
     padding: 5px 10px;
     border: 1px solid #ddd;
+    border-radius: 4px;
   }
 
   .open:hover,
@@ -96,14 +95,6 @@
   }
 }
 
-// .CodeMirror,
-// .editor-toolbar {
-//   border-radius: 0;
-// }
-.comment-form .CodeMirror {
-  border-radius: 0;
-  border-bottom: none;
-}
 .CodeMirror,
 .CodeMirror-scroll {
   min-height: 150px;
