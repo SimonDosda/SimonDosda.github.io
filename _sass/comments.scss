@@ -95,6 +95,22 @@
   }
 }
 
+.comment-box {
+  padding: 16px;
+  border-radius: 16px;
+  margin-bottom: 36px;
+}
+
+.comment-success {
+  border: 2px solid rgb(28, 134, 99);
+  background-color: rgba(97, 185, 156, 0.2);
+}
+
+.comment-error {
+  border: 2px solid darkred;
+  background-color: rgba(194, 63, 63, 0.2);
+}
+
 .CodeMirror,
 .CodeMirror-scroll {
   min-height: 150px;
