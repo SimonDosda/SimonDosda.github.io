@@ -1,0 +1,22 @@
+.site-footer {
+    .wrapper {
+        display: flex;
+        .description {
+            flex: 1;
+            h2 {
+                font-size: var(--font-size-extra-big);
+                font-weight: 300;
+            }
+            p {
+                margin-top: -16px;
+                font-size: var(--font-size-small);
+                font-style: italic;
+            }
+        }
+        .social {
+            .svg-icon {
+                vertical-align: baseline;
+            }
+        }
+    }
+}
