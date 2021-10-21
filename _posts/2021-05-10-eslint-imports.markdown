@@ -105,3 +105,7 @@ It is for the best anyway because this rule provides minimal customization to or
 Now, running *ESLint* with the `--fix` option will reorder your multiple members' imports. For instance, `import { d, a, c, b } from e;` will be changed to `import { a, b, c, d } from e;`.
 
 It doesn't hurt!
+
+<!-- adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1865928774299375"
+     crossorigin="anonymous"></script>

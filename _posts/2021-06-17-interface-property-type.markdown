@@ -105,3 +105,7 @@ updatePost(post, "publishDate", new Date());
 Adding the type variable `BlogPostKey` for the property type allows us to use it for the `value` type while still ensuring that the property is a key of `BlogPost` using `extends keyof BlogPost`.
 
 I hope that trick can be helpful to you!
+
+<!-- adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1865928774299375"
+     crossorigin="anonymous"></script>
