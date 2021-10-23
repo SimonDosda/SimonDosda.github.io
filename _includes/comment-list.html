@@ -10,7 +10,7 @@
     itemprop="datePublished"
   >
     {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-    {{ comment.date | date:"%H:%M - %b %-d, %Y, %Y" }}
+    {{ comment.date | date:"%H:%M - %b %-d, %Y" }}
   </time>
   <p>{{comment.message | strip_html | markdownify }}</p>
   <div class="comment-reply">
