@@ -51,15 +51,16 @@ When I commit, I usually want to stage all my modifications, and of course, add 
 
 ```bash
 # stage and commit all the changes
-c = !git add -A && git commit -m
+c = !git add --all && git commit -m
 # stage and commit all the changes with WIP as a commit message
-wip = !git add -A && git commit -m 'WIP'
+wip = !git add --all && git commit -m 'WIP'
 ```
 
-Finally, there is no quick way to get rid of everything we have done. However, sometimes we tried something with no compelling results and want to start from scratch. To do so I have a `git drop` alias that stashes my changes and drops them.
+Finally, I have a `git drop` alias to get rid of everything I did since the last commit. 
 
 ```bash
-drop = !git stash && git stash drop  # drop current changes
+# drop current changes
+drop = !git reset --hard HEAD  
 ```
 
 ## Status helpers
@@ -89,22 +90,22 @@ To do so, I have the forced version of the push presented before, `git fp`. I al
 # force push to the same branch name
 fp = !git push origin $(git rev-parse --abbrev-ref HEAD) -f
 # amend everything in the current commit
-amend = !git add -A && git commit --amend --no-edit
+amend = !git add --all && git commit --amend --no-edit
 # amend and force push
 afp = !git amend && git fp
 ```
 
 To be more efficient in managing rebasing, I have set several aliases.
 
-The first one, `git rom` (for **r**ebase **o**n **m**aster), rebases the current branch on origin/master (after fetching it).
+The first one, `git rom` (for **r**ebase **o**n **m**ain), rebases the current branch on the main branch of the remote repository (after fetching it).
 
 Then there is `git rh` (for **r**eset **h**ard), which can be seen as a force pull, and resets the current branch with the remote one.
 
 Finaly, git ri <n> (for **r**ebase **i**nteractive) allows an interactive rebasing of the n last commits.
 
 ```bash
-# rebase on origin/master
-rom = !git fetch --all && git rebase origin/master
+# rebase on main origin branch                                                     
+rom = !git fetch --all && git rebase $(git rev-parse --abbrev-ref origin/HEAD)
 # reset the branch to the distant one
 rh = !git fetch && git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
 # interactive rebasing
@@ -132,23 +133,23 @@ state = !git fetch --prune && git fetch --tags && clear && git branch -vv && git
 ll = !git log --oneline -n
 
 # stage and commit all the changes
-c = !git add -A && git commit -m
+c = !git add --all && git commit -m
 # stage and commit all the changes with WIP as a commit message
-wip = !git add -A && git commit -m 'WIP'
+wip = !git add --all && git commit -m 'WIP'
 # drop current changes
-drop = !git stash && git stash drop
+drop = !git reset --hard HEAD
 
 # push to the same branch name
 p = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
 # force push to the same branch name
 fp = !git push origin $(git rev-parse --abbrev-ref HEAD) -f
 # amend everything in the current commit
-amend = !git add -A && git commit --amend --no-edit
+amend = !git add --all && git commit --amend --no-edit
 # amend and force push
 afp = !git amend && git fp
 
-# rebase on origin/master
-rom = !git fetch --all && git rebase origin/master
+# rebase on main origin branch
+rom = !git fetch --all && git rebase $(git rev-parse --abbrev-ref origin/HEAD)
 # reset the branch to the distant one
 rh = !git fetch && git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
 # interactive rebasing
