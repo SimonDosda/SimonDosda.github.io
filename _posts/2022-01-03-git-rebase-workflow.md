@@ -20,7 +20,7 @@ Doing so strongly limits the benefits of using git.
 When we choose to enforce having a clean, readable history, composed of well-defined atomic commits on a single linear branch, the advantages of doing so greatly overcome the little extra time we spend to ensure everything we integrate to our main branch is clean:
 
 - we can now **easily read the history** and understand what changes were made
-- if there were some changes we don't understand, we were able to read all the **relevant associated changes in the same commit**
+- if there are some changes we don't understand, we can read all the **relevant associated changes in the same commit**
 - if we have a problem with a deployment, we can **easily revert the last commit**
 
 In this article, I will introduce the main rules to maintain a clean git history and show you how I personally apply them in my day-to-day development.
@@ -61,7 +61,7 @@ If you want to know more about them, you can go to my article explaining my [git
 
 I usually start by creating a new branch from the latest main branch.
 
-"`bash
+```bash
 git checkout main  # git co main
 git pull
 git checkout -b my-branch  # git nb my-branch
@@ -94,7 +94,7 @@ But at the end of the feature development, I will rewrite my history to have onl
 
 To do so, I usually use an interactive `rebase`.
 
-"`bash
+```bash
 git rebase -i HEAD~7  # git ri 7
 ```
 
@@ -111,7 +111,7 @@ The main ones I use are:
 
 Once the history has been rewritten, I need to force push to the remote repository.
 
-"`bash
+```bash
 git push --force  # git fp
 ```
 
@@ -119,7 +119,7 @@ git push --force  # git fp
 
 Before pushing my changes for a review, I will usually rebase on the main branch so that my branch is up to date.
 
-"`bash
+```bash
 git fetch & git rebase origin/main  # git rom
 ```
 
@@ -134,7 +134,7 @@ I then open a merge/pull request in gitlab/github, and almost always find correc
 
 If the changes I want to make are important, I will create new commits, but for small corrections I usually integrate them directly to the current commit by amending it.
 
-"`bash
+```bash
 git commit --amend & git push --force  # git afp
 ```
 
@@ -148,7 +148,7 @@ Eventually, before integrating this new feature to the main branch, I will regro
 
 Finally, Once merged, I will delete my branch on the server (this is configured to be done automatically after merging) and on my local repository, so that these repositories stay clean.
 
-"`bash
+```bash
 git branch -D my-branch  # git del my-branch
 ```
 
