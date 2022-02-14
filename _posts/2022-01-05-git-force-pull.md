@@ -37,7 +37,7 @@ If you are interested to learn more about it, I have [written an article about i
 Basically, the `reset` command set our head to the targeted commit, here to the last commit on `origin/my-branch`. 
 Using it with the `--hard` option allows to discard all local changes, committed or not, and therefore force the current state to the distant one.
 
-If you find yourself using it often, I would advise you [to set an alias for it]({% post_url 2021-04-13-git-aliases.html %}).
+If you find yourself using it often, I would advise you [to set an alias for it]({% post_url 2021-04-13-git-aliases %}).
 
 ```bash
 git config --global alias.rh '!git fetch && git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)'
