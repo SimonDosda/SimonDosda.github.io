@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Follow Your Website Analitycs With Umami
+title: Follow Your Website Analytics With Umami
 date: 2021-09-19
 last_modified_at: 2021-09-19
 cover_image: 2021-09-19-feature.jpg
